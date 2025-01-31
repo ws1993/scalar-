@@ -4,26 +4,35 @@
   "author": "Scalar (https://github.com/scalar)",
   "homepage": "https://github.com/scalar/scalar",
   "bugs": "https://github.com/scalar/scalar/issues/new/choose",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scalar/scalar.git",
+    "directory": "examples/ssg"
+  },
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "scripts": {
     "build": "vue-tsc && vite-ssg build",
     "dev": "vite",
-    "preview": "vite preview"
+    "lint:check": "eslint .",
+    "lint:fix": "eslint .  --fix",
+    "preview": "vite preview",
+    "types:check": "scalar-types-check-vue"
   },
   "type": "module",
   "dependencies": {
     "@scalar/api-reference": "workspace:*",
-    "vue": "^3.3.0"
+    "@scalar/oas-utils": "workspace:*",
+    "@scalar/types": "workspace:*",
+    "vue": "^3.5.12"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.4.0",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.12",
-    "vite-ssg": "^0.23.4",
-    "vue-tsc": "^1.8.19"
+    "@scalar/build-tooling": "workspace:*",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.4.10",
+    "vite-ssg": "^0.24.1"
   }
 }

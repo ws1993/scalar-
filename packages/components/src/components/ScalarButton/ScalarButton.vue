@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue'
-
-import { cx } from '@/cva'
-
+import { useBindCx } from '../../hooks/useBindCx'
 import { type LoadingState, ScalarLoading } from '../ScalarLoading'
 import { type Variants, variants } from './variants'
 
@@ -16,46 +13,46 @@ withDefaults(
     loading?: LoadingState
     size?: Variants['size']
     variant?: Variants['variant']
+    type?: 'button' | 'submit' | 'reset'
   }>(),
   {
     fullWidth: false,
     size: 'md',
     variant: 'solid',
+    type: 'button',
   },
 )
 
 defineOptions({ inheritAttrs: false })
-
-/* Extract the classes so they can be merged by `cx` */
-const attrs = computed(() => {
-  const { class: className, ...rest } = useAttrs()
-  return { className: className || '', rest }
-})
+const { cx } = useBindCx()
 </script>
 <template>
   <button
-    v-bind="attrs.rest"
     :ariaDisabled="disabled || undefined"
-    :class="
-      cx(
-        variants({ fullWidth, disabled, size, variant }),
-        { 'pl-9 pr-3': loading },
-        `${attrs.className}`,
-      )
-    "
-    type="button">
+    :type="type"
+    v-bind="
+      cx(variants({ fullWidth, disabled, size, variant }), {
+        relative: loading?.isLoading,
+      })
+    ">
     <div
       v-if="$slots.icon"
-      class="mr-2 h-4 w-4">
+      class="mr-2 h-4 w-4"
+      :class="{ invisible: loading?.isLoading }">
       <slot name="icon" />
     </div>
-    <slot />
-    <div
+    <span
       v-if="loading"
-      class="ml-2">
+      :class="{ invisible: loading?.isLoading }">
+      <slot />
+    </span>
+    <slot v-else />
+    <div
+      v-if="loading?.isLoading"
+      class="centered-x absolute">
       <ScalarLoading
         :loadingState="loading"
-        size="20px" />
+        size="xs" />
     </div>
   </button>
 </template>

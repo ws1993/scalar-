@@ -1,9 +1,9 @@
-# Scalar Fastify API Reference Plugin
+# Scalar for Fastify
 
 [![Version](https://img.shields.io/npm/v/%40scalar/fastify-api-reference)](https://www.npmjs.com/package/@scalar/fastify-api-reference)
 [![Downloads](https://img.shields.io/npm/dm/%40scalar/fastify-api-reference)](https://www.npmjs.com/package/@scalar/fastify-api-reference)
 [![License](https://img.shields.io/npm/l/%40scalar%2Ffastify-api-reference)](https://www.npmjs.com/package/@scalar/fastify-api-reference)
-[![Discord](https://img.shields.io/discord/1135330207960678410?style=flat&color=5865F2)](https://discord.gg/8HeZcRGPFS)
+[![Discord](https://img.shields.io/discord/1135330207960678410?style=flat&color=5865F2)](https://discord.gg/scalar)
 
 This plugin provides an easy way to render a beautiful API reference based on a OpenAPI/Swagger file with Fastify.
 
@@ -34,26 +34,13 @@ fastify.register(require('@scalar/fastify-api-reference'), {
   configuration: {
     title: 'Our API Reference',
     spec: {
-      url: '/swagger.json',
+      url: '/openapi.json',
     },
   },
 })
 ```
 
-With the [@fastify/swagger](https://github.com/fastify/fastify-swagger) you can even generate your Swagger spec from the registered routes and directly pass it to the plugin:
-
-```ts
-await fastify.register(require('@scalar/fastify-api-reference'), {
-  routePrefix: '/reference',
-  configuration: {
-    spec: {
-      content: () => fastify.swagger(),
-    },
-  },
-})
-```
-
-Actually, we’re picking it up automatically, so this would be enough:
+With [@fastify/swagger], we’re picking it up automatically, so this would be enough:
 
 ```ts
 await fastify.register(require('@scalar/fastify-api-reference'), {
@@ -61,20 +48,9 @@ await fastify.register(require('@scalar/fastify-api-reference'), {
 })
 ```
 
-Or, if you just have a static OpenAPI spec, you can directly pass it, too:
+We wrote a [detailed integration guide for Fastify](https://github.com/scalar/scalar/tree/main/documentation/integrations/fastify.md).
 
-```ts
-await fastify.register(require('@scalar/fastify-api-reference'), {
-  routePrefix: '/reference',
-  configuration: {
-    spec: {
-      content: { … }
-    },
-  },
-})
-```
-
-The fastify plugin takes our universal configuration object, [read more about configuration](https://github.com/scalar/scalar/tree/main/packages/api-reference#configuration) in the core package README.
+The fastify plugin takes our universal configuration object, [read more about configuration](https://github.com/scalar/scalar/tree/main/documentation/configuration.md) in the core package README.
 
 ## Themes
 
@@ -88,3 +64,11 @@ await fastify.register(require('@scalar/fastify-api-reference'), {
   },
 })
 ```
+
+## Community
+
+We are API nerds. You too? Let’s chat on Discord: <https://discord.gg/scalar>
+
+## License
+
+The source code in this repository is licensed under [MIT](https://github.com/scalar/scalar/blob/main/LICENSE).

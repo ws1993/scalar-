@@ -4,37 +4,40 @@
   "author": "Scalar (https://github.com/scalar)",
   "homepage": "https://github.com/scalar/scalar",
   "bugs": "https://github.com/scalar/scalar/issues/new/choose",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scalar/scalar.git",
+    "directory": "examples/web"
+  },
   "version": "0.4.2",
   "private": true,
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "scripts": {
     "build": "vue-tsc && vite build",
     "dev": "vite",
-    "lint": "eslint \"src/**/*.{js,vue}\"",
-    "lint:fix": "eslint \"src/**/*.{js,vue}\" --fix",
-    "preview": "vite preview"
+    "lint:check": "eslint .",
+    "lint:fix": "eslint .  --fix",
+    "preview": "vite preview",
+    "types:check": "vue-tsc --noEmit --skipLibCheck --composite false"
   },
   "type": "module",
   "dependencies": {
-    "@scalar/api-client": "workspace:*",
     "@scalar/api-reference": "workspace:*",
-    "@scalar/swagger-editor": "workspace:*",
-    "@scalar/themes": "workspace:^",
-    "vue": "^3.3.0",
-    "vue-router": "^4.2.4"
+    "@scalar/galaxy": "workspace:*",
+    "@scalar/themes": "workspace:*",
+    "@vueuse/core": "^10.10.0",
+    "monaco-editor": "^0.47.0",
+    "vue": "^3.5.12",
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.4.0",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8.49.0",
-    "eslint-plugin-vue": "^9.17.0",
-    "postcss": "^8.4.31",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.19",
+    "eslint-plugin-vue": "^9.21.1",
+    "postcss": "^8.4.38",
     "postcss-nested": "^6.0.1",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.12",
-    "vite-plugin-node-polyfills": "^0.14.1",
-    "vue-tsc": "^1.8.19"
+    "vite": "^5.4.10"
   }
 }

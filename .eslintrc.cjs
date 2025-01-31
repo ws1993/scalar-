@@ -17,15 +17,21 @@ module.exports = {
     'prettier',
     'plugin:storybook/recommended',
   ],
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', 'eslint-plugin-jsdoc'],
   ignorePatterns: [
     '**/dist/**',
+    '*.generated.ts',
     'api-reference/packages/swagger-parser/**',
     '**/dist-publish/**',
     '**/.vite-ssg-temp/**',
     '**/vite.config.ts',
+    '**/vitest.config.ts',
+    '**/tailwind.config.ts',
     '**/vite.standalone.config.ts',
     '**/cdn/**',
+    '**/hydrateClient.d.ts',
+    '**/hydrateClient.d.mts',
+    'packages/scalar-app/src/preload/index.d.ts',
   ],
   rules: {
     // ---------------------------------------------------------------------------
@@ -66,6 +72,7 @@ module.exports = {
     {
       files: ['**.vue', '**.ts'],
       rules: {
+        '@typescript-eslint/no-import-type-side-effects': 'warn',
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': 'error',
         'no-shadow': 'off',
@@ -120,6 +127,27 @@ module.exports = {
             format: ['PascalCase'],
           },
         ],
+        'jsdoc/require-jsdoc': [
+          'warn',
+          {
+            publicOnly: true,
+            enableFixer: false,
+            require: {
+              ArrowFunctionExpression: true,
+              FunctionExpression: true,
+            },
+          },
+        ],
+        'jsdoc/check-alignment': 'warn',
+        'jsdoc/check-param-names': 'warn',
+        'jsdoc/check-property-names': 'warn',
+        'jsdoc/check-types': 'warn',
+        'jsdoc/check-values': 'warn',
+        'jsdoc/empty-tags': 'warn',
+        'jsdoc/implements-on-classes': 'warn',
+        'jsdoc/multiline-blocks': 'warn',
+        'jsdoc/no-multi-asterisks': 'warn',
+        'jsdoc/no-undefined-types': 'warn',
       },
     },
     /** Vue SFC linting rules */

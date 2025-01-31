@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { VariantProps } from 'cva'
 
-import { cva, cx } from '@/cva'
-
+import { cva } from '../../cva'
+import { useBindCx } from '../../hooks/useBindCx'
 import { styles } from '../ScalarButton'
 import { type Icon, ScalarIcon } from '../ScalarIcon'
 
@@ -15,6 +15,7 @@ withDefaults(
     disabled?: boolean
     variant?: Variants['variant']
     size?: Variants['size']
+    thickness?: string
   }>(),
   {
     variant: 'ghost',
@@ -22,13 +23,17 @@ withDefaults(
   },
 )
 
+defineOptions({ inheritAttrs: false })
+const { cx } = useBindCx()
+
 const variants = cva({
   base: 'scalar-icon-button grid aspect-square cursor-pointer rounded',
   variants: {
     size: {
-      xs: 'h-3.5 w-3.5 p-0.5',
-      sm: 'h-5 w-5 p-1',
-      md: 'h-10 w-10 p-3',
+      xxs: 'size-3.5 p-0.5',
+      xs: 'size-5 p-1',
+      sm: 'size-6 p-1',
+      md: 'size-10 p-3',
       full: 'h-full w-full',
     },
     disabled: {
@@ -41,9 +46,11 @@ const variants = cva({
 <template>
   <button
     :ariaDisabled="disabled || undefined"
-    :class="cx(variants({ size, variant, disabled }))"
-    type="button">
-    <ScalarIcon :icon="icon" />
+    type="button"
+    v-bind="cx(variants({ size, variant, disabled }))">
+    <ScalarIcon
+      :icon="icon"
+      :thickness="thickness" />
     <span class="sr-only">{{ label }}</span>
   </button>
 </template>

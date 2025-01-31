@@ -1,16 +1,31 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "tasks": {
     "lint:fix": {},
     "build": {
-      "outputs": ["dist/**"],
+      "outputs": ["dist/**", "storybook-static/**"],
       "dependsOn": ["^build"]
     },
-    "types:check": {
+    "dev": {
+      "cache": false,
+      "persistent": true,
       "dependsOn": ["^build"]
     },
-    "test": {
+    "playground": {
+      "cache": false,
+      "persistent": true,
       "dependsOn": ["^build"]
-    }
+    },
+    "playground:modal": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "playground:web": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "types:check": {}
   }
 }

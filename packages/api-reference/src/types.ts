@@ -1,154 +1,31 @@
-import { type ThemeId } from '@scalar/themes'
-import type { MetaFlatInput } from '@unhead/schema'
-import type { HarRequest } from 'httpsnippet-lite'
-import { type OpenAPIV2, type OpenAPIV3, type OpenAPIV3_1 } from 'openapi-types'
-import { type DeepReadonly, type Slot } from 'vue'
+import type { HarRequest } from '@scalar/snippetz/types'
+import type { ThemeId } from '@scalar/themes'
+import type {
+  ContentType,
+  ReferenceConfiguration,
+  Spec,
+} from '@scalar/types/legacy'
+import type { Slot } from 'vue'
+
+export type { ReferenceConfiguration }
 
 export type ReferenceProps = {
   configuration?: ReferenceConfiguration
 }
 
-export type SpecConfiguration = {
-  /** URL to a Swagger/OpenAPI file */
-  url?: string
-  /** Swagger/Open API spec */
-  content?: string | Record<string, any> | (() => Record<string, any>)
-  /** The result of @scalar/swagger-parser */
-  preparsedContent?: Record<any, any>
+export type ReferenceLayoutProps = {
+  configuration: ReferenceConfiguration
+  parsedSpec: Spec
+  rawSpec: string
+  isDark: boolean
 }
 
-export type ReferenceConfiguration = {
-  /** A string to use one of the color presets */
-  theme?: ThemeId
-  /** The layout to use for the references */
-  layout?: ReferenceLayoutType
-  /** The Swagger/OpenAPI spec to render */
-  spec?: SpecConfiguration
-  /** URL to a request proxy for the API client */
-  proxy?: string
-  /** Whether the spec input should show */
-  isEditable?: boolean
-  /** Whether to show the sidebar */
-  showSidebar?: boolean
-  /** Remove the Scalar branding :( */
-  // doNotPromoteScalar?: boolean
-  /** Key used with CNTRL/CMD to open the search modal (defaults to 'k' e.g. CMD+k) */
-  searchHotKey?: string
-  /** If used, passed data will be added to the HTML header. Read more: https://unhead.unjs.io/usage/composables/use-seo-meta */
-  metaData?: MetaFlatInput
-  /** Custom CSS to be added to the page */
-  customCss?: string
-  /** onSpecUpdate is fired on spec/swagger content change */
-  onSpecUpdate?: (spec: string) => void
-}
-
-/** Default reference configuration */
-export const DEFAULT_CONFIG: DeepReadonly<ReferenceConfiguration> = {
-  spec: {
-    content: undefined,
-    url: undefined,
-    preparsedContent: undefined,
-  },
-  proxy: undefined,
-  theme: 'default',
-  showSidebar: true,
-  isEditable: false,
+export type PathRouting = {
+  basePath: string
 }
 
 export type GettingStartedExamples = 'Petstore' | 'CoinMarketCap'
 
-export type Schema = {
-  format: string
-  type: string
-  default?: any
-  description?: string
-}
-
-export type Parameters = {
-  // Fixed Fields
-  name: string
-  in?: string
-  description?: string
-  required?: boolean
-  deprecated?: boolean
-  allowEmptyValue?: boolean
-  // Other
-  style?: 'form' | 'simple'
-  explode?: boolean
-  allowReserved?: boolean
-  schema?: Schema
-  example?: any
-  examples?: Map<string, any>
-}
-
-export type Response = {
-  description: string
-  content: any
-}
-
-export type Information = {
-  description?: string
-  operationId?: string | number
-  parameters?: Parameters[]
-  responses?: Record<string, Response>
-  security?: OpenAPIV3.SecurityRequirementObject[]
-  requestBody?: RequestBody
-  summary?: string
-  tags?: string[]
-  deprecated?: boolean
-}
-
-export type Operation = {
-  httpVerb: string
-  path: string
-  operationId?: string
-  name?: string
-  description?: string
-  information?: Information
-}
-
-export type ExampleResponseHeaders = Record<
-  string,
-  {
-    description: string
-    schema: {
-      type: string
-      format?: string
-      example?: string
-    }
-  }
->
-
-export type RequestBodyMimeTypes =
-  | 'application/json'
-  | 'application/octet-stream'
-  | 'application/x-www-form-urlencoded'
-  | 'application/xml'
-  | 'multipart/form-data'
-  | 'text/plain'
-
-export type TransformedOperation = Operation & {
-  pathParameters?: Parameters[]
-  // TODO: This overwrites was has been in information before? Let’s check if this is correct.
-  information?: {
-    requestBody?: {
-      content?: Record<
-        RequestBodyMimeTypes,
-        {
-          schema?: any
-          example?: any
-          examples?: any
-        }
-      >
-    }
-  }
-}
-
-export type Tag = {
-  name: string
-  description: string
-  operations: TransformedOperation[]
-}
 export type Parameter = {
   name: string
   required: boolean
@@ -159,9 +36,9 @@ export type Parameter = {
 export type ContentProperties = {
   [key: string]: {
     type: string
-    format: string
-    example: string
-    required: string[]
+    format?: string
+    example?: any
+    required?: string[]
     enum?: string[]
     description?: string
     properties?: ContentProperties
@@ -169,29 +46,15 @@ export type ContentProperties = {
 }
 
 export type ContentSchema = {
-  schema: {
+  schema?: {
     type: string
-    required: string[]
+    required?: string[]
     properties: ContentProperties
   }
 }
 
-export type ContentType =
-  | 'application/json'
-  | 'application/xml'
-  | 'text/plain'
-  | 'text/html'
-  | 'application/x-www-form-urlencoded'
-  | 'multipart/form-data'
-
 export type Content = {
   [key in ContentType]: ContentSchema
-}
-
-export type RequestBody = {
-  description: string
-  content: Content
-  required: boolean
 }
 
 export type Contact = {
@@ -210,101 +73,6 @@ export type Info = {
   contact?: Contact
   license?: License
   version?: string
-}
-
-export type ExternalDocs = {
-  description: string
-  url: string
-}
-
-export type ServerVariables = Record<
-  string,
-  {
-    default?: string | number
-    description?: string
-    enum?: (string | number)[]
-  }
->
-
-export type Server = {
-  url: string
-  description?: string
-  variables?: ServerVariables
-}
-
-export type SecurityScheme =
-  | Record<string, never> // Empty objects
-  | OpenAPIV2.SecuritySchemeObject
-  | OpenAPIV3.SecuritySchemeObject
-  | OpenAPIV3_1.SecuritySchemeObject
-
-export type Components = Omit<
-  OpenAPIV3.ComponentsObject | OpenAPIV3_1.ComponentsObject,
-  'securitySchemes'
-> & {
-  securitySchemes?: Record<string, SecurityScheme>
-}
-
-export type Definitions = OpenAPIV2.DefinitionsObject
-
-export type Spec = {
-  tags?: Tag[]
-  info: Info
-  host?: string
-  schemes?: string[]
-  externalDocs?: ExternalDocs
-  servers?: Server[]
-  components?: Components
-  definitions?: Definitions
-  openapi?: string
-  swagger?: string
-}
-
-export type AuthenticationState = {
-  securitySchemeKey: string | null
-  securitySchemes?: Record<string, SecurityScheme>
-  http: {
-    basic: {
-      username: string
-      password: string
-    }
-    bearer: {
-      token: string
-    }
-  }
-  apiKey: {
-    token: string
-  }
-  oAuth2: {
-    clientId: string
-    scopes: string[]
-  }
-}
-
-export type Variable = {
-  [key: string]: string
-}
-
-export type ServerState = {
-  selectedServer: null | number
-  description?: string
-  servers: Server[]
-  variables: Variable[]
-}
-
-export type Header = {
-  name: string
-  value: string
-}
-
-export type Query = {
-  name: string
-  value: string
-}
-
-export type Cookie = {
-  name: string
-  value: string
 }
 
 export type HarRequestWithPath = HarRequest & {
@@ -331,7 +99,19 @@ export type ReferenceLayoutSlot =
   | 'sidebar-start'
   | 'sidebar-end'
 
+export type ReferenceLayoutSlots = {
+  [x in ReferenceLayoutSlot]: (props: ReferenceSlotProps) => any
+}
+
 export type ReferenceSlotProps = {
   spec: Spec
   breadcrumb: string
+}
+
+export type ReferenceLayoutEvents = {
+  (e: 'changeTheme', value: ThemeId): void
+  (e: 'updateContent', value: string): void
+  (e: 'loadSwaggerFile'): void
+  (e: 'linkSwaggerFile'): void
+  (e: 'toggleDarkMode'): void
 }

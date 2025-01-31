@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useClipboard } from '@scalar/use-clipboard'
+import { useNavState } from '@/hooks'
+import { useClipboard } from '@scalar/use-hooks/useClipboard'
 
 import ScreenReader from '../ScreenReader.vue'
 
@@ -8,13 +9,9 @@ defineProps<{
 }>()
 
 const { copyToClipboard } = useClipboard()
-
+const { getHashedUrl } = useNavState()
 const getUrlWithId = (id: string) => {
-  const url = new URL(window.location.href)
-
-  url.hash = id
-
-  return url.toString()
+  return getHashedUrl(id)
 }
 </script>
 <template>
@@ -27,7 +24,7 @@ const getUrlWithId = (id: string) => {
         class="anchor-copy"
         type="button"
         @click.stop="copyToClipboard(getUrlWithId(id))">
-        #
+        <span aria-hidden="true">#</span>
         <ScreenReader>Copy link to "<slot />"</ScreenReader>
       </button>
     </span>
@@ -37,6 +34,7 @@ const getUrlWithId = (id: string) => {
 .label {
   position: relative;
   display: inline-block;
+  word-break: break-all;
 }
 .anchor {
   position: relative;
@@ -54,17 +52,18 @@ const getUrlWithId = (id: string) => {
 
   padding: 0 6px;
 
-  color: var(--theme-color-3, var(--default-theme-color-3));
-  font-weight: var(--theme-semibold, var(--default-theme-semibold));
+  color: var(--scalar-color-3);
+  font-weight: var(--scalar-semibold);
   font-size: 0.8em;
 }
 
 .anchor-copy:hover,
 .anchor-copy:focus-visible {
-  color: var(--theme-color-2, var(--default-theme-color-2));
+  color: var(--scalar-color-2);
 }
 
-.label:hover .anchor {
+.label:hover .anchor,
+.label:has(:focus-visible) .anchor {
   opacity: 1;
 }
 </style>

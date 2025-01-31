@@ -1,132 +1,130 @@
 <script setup lang="ts">
-import { useResizeObserver } from '@vueuse/core'
-import { computed, onMounted, ref } from 'vue'
+import { BaseUrl } from '@/features/BaseUrl'
+import { useActiveEntities } from '@scalar/api-client/store'
+import { RequestAuth } from '@scalar/api-client/views/Request/RequestSection/RequestAuth'
+import { ScalarErrorBoundary } from '@scalar/components'
+import type { Spec } from '@scalar/types/legacy'
+import { computed } from 'vue'
 
-import { hasModels } from '../../helpers'
-import { useNavigation, useRefOnMount } from '../../hooks'
-import type { Spec } from '../../types'
-import { Authentication } from './Authentication'
-import Introduction from './Introduction'
-import ClientList from './Introduction/ClientList.vue'
-import ServerList from './Introduction/ServerList.vue'
-import Models from './Models.vue'
-import ModelsAccordion from './ModelsAccordion.vue'
-import ReferenceEndpoint from './ReferenceEndpoint'
-import ReferenceEndpointAccordion from './ReferenceEndpoint/ReferenceEndpointAccordion.vue'
-import ReferenceTag from './ReferenceTag.vue'
-import ReferenceTagAccordion from './ReferenceTagAccordion.vue'
+import { getModels, hasModels } from '../../helpers'
+import { useSidebar } from '../../hooks'
+import { ClientLibraries } from './ClientLibraries'
+import { Introduction } from './Introduction'
+import { Loading } from './Lazy'
+import { Models, ModelsAccordion } from './Models'
+import { TagList } from './Tag'
+import { Webhooks } from './Webhooks'
 
-const props = defineProps<{
-  parsedSpec: Spec
-  rawSpec: string
-  layout?: 'default' | 'accordion'
-}>()
-
-const { setCollapsedSidebarItem } = useNavigation()
-
-const referenceEl = ref<HTMLElement | null>(null)
-
-const isNarrow = ref(true)
-
-useResizeObserver(
-  referenceEl,
-  (entries) => (isNarrow.value = entries[0].contentRect.width < 900),
+const props = withDefaults(
+  defineProps<{
+    parsedSpec: Spec
+    layout?: 'modern' | 'classic'
+  }>(),
+  {
+    layout: 'modern',
+  },
 )
 
-onMounted(() => {
-  if (props.parsedSpec.tags?.length) {
-    setCollapsedSidebarItem(props.parsedSpec.tags[0].name, true)
-  }
-})
+const { hideModels } = useSidebar()
+const { activeCollection, activeServer, activeWorkspace } = useActiveEntities()
 
-const fallBackServer = useRefOnMount(() => {
-  return {
-    url: window.location.origin,
-  }
-})
-
-const localServers = computed(() => {
-  if (props.parsedSpec.servers && props.parsedSpec.servers.length > 0) {
-    return props.parsedSpec.servers
-  } else if (
-    props.parsedSpec.host &&
-    props.parsedSpec.schemes &&
-    props.parsedSpec.schemes.length > 0
-  ) {
-    return [
-      { url: `${props.parsedSpec.schemes[0]}://${props.parsedSpec.host}` },
-    ]
-  } else if (fallBackServer.value) {
-    return [fallBackServer.value]
-  } else {
-    return [{ url: '' }]
-  }
-})
-
-const tagLayout = computed<typeof ReferenceTag>(() =>
-  props.layout === 'accordion' ? ReferenceTagAccordion : ReferenceTag,
-)
-const endpointLayout = computed<typeof ReferenceEndpoint>(() =>
-  props.layout === 'accordion' ? ReferenceEndpointAccordion : ReferenceEndpoint,
-)
 const introCardsSlot = computed(() =>
-  props.layout === 'accordion' ? 'after' : 'aside',
+  props.layout === 'classic' ? 'after' : 'aside',
 )
 </script>
 <template>
-  <div
-    ref="referenceEl"
-    :class="{
-      'references-narrow': isNarrow,
-    }">
+  <!-- For adding gradients + animations to introduction of documents that :before / :after won't work for -->
+  <div class="section-flare">
+    <div class="section-flare-item"></div>
+    <div class="section-flare-item"></div>
+    <div class="section-flare-item"></div>
+    <div class="section-flare-item"></div>
+    <div class="section-flare-item"></div>
+    <div class="section-flare-item"></div>
+    <div class="section-flare-item"></div>
+    <div class="section-flare-item"></div>
+  </div>
+  <div class="narrow-references-container">
     <slot name="start" />
+    <Loading
+      :layout="layout"
+      :parsedSpec="parsedSpec" />
+
     <Introduction
-      v-if="parsedSpec.info.title || parsedSpec.info.description"
+      v-if="parsedSpec?.info?.title || parsedSpec?.info?.description"
       :info="parsedSpec.info"
-      :parsedSpec="parsedSpec"
-      :rawSpec="rawSpec">
+      :parsedSpec="parsedSpec">
       <template #[introCardsSlot]>
-        <div
-          class="introduction-cards"
-          :class="{ 'introduction-cards-row': layout === 'accordion' }">
-          <ServerList :value="localServers" />
-          <ClientList />
-          <Authentication :parsedSpec="parsedSpec" />
-        </div>
+        <ScalarErrorBoundary>
+          <div
+            class="introduction-card"
+            :class="{ 'introduction-card-row': layout === 'classic' }">
+            <div
+              v-if="activeCollection?.servers?.length"
+              class="scalar-client introduction-card-item [--scalar-address-bar-height:0px] divide-y text-sm">
+              <BaseUrl />
+            </div>
+            <div class="scalar-client introduction-card-item">
+              <RequestAuth
+                v-if="activeCollection && activeWorkspace"
+                :collection="activeCollection"
+                layout="reference"
+                :selectedSecuritySchemeUids="
+                  activeCollection?.selectedSecuritySchemeUids ?? []
+                "
+                :server="activeServer"
+                title="Authentication"
+                :workspace="activeWorkspace" />
+            </div>
+            <ClientLibraries class="introduction-card-item" />
+          </div>
+        </ScalarErrorBoundary>
       </template>
     </Introduction>
     <slot
       v-else
       name="empty-state" />
-    <template
-      v-for="(tag, index) in parsedSpec.tags"
-      :key="tag.id">
-      <Component
-        :is="tagLayout"
-        v-if="tag.operations && tag.operations.length > 0"
-        :isFirst="index === 0"
+    <template v-if="parsedSpec.tags">
+      <template v-if="parsedSpec['x-tagGroups']">
+        <TagList
+          v-for="tagGroup in parsedSpec['x-tagGroups']"
+          :key="tagGroup.name"
+          :layout="layout"
+          :spec="parsedSpec"
+          :tags="
+            tagGroup.tags
+              .map((name) => parsedSpec.tags?.find((t) => t.name === name))
+              .filter((tag) => !!tag)
+          " />
+      </template>
+      <TagList
+        v-else
+        :layout="layout"
         :spec="parsedSpec"
-        :tag="tag">
-        <Component
-          :is="endpointLayout"
-          v-for="operation in tag.operations"
-          :key="`${operation.httpVerb}-${operation.operationId}`"
-          :operation="operation"
-          :server="localServers[0]"
-          :tag="tag" />
-      </Component>
+        :tags="parsedSpec.tags" />
     </template>
-    <template v-if="hasModels(parsedSpec)">
+
+    <template v-if="parsedSpec.webhooks">
+      <Webhooks :webhooks="parsedSpec.webhooks" />
+    </template>
+
+    <template v-if="hasModels(parsedSpec) && !hideModels">
       <ModelsAccordion
-        v-if="layout === 'accordion'"
-        :components="parsedSpec.components" />
+        v-if="layout === 'classic'"
+        :schemas="getModels(parsedSpec)" />
       <Models
         v-else
-        :components="parsedSpec.components" />
+        :schemas="getModels(parsedSpec)" />
     </template>
     <slot name="end" />
   </div>
 </template>
+<style>
+.narrow-references-container {
+  container-name: narrow-references-container;
+  container-type: inline-size;
+}
+</style>
 <style scoped>
 .render-loading {
   height: calc(var(--full-height) - var(--refs-header-height));
@@ -134,22 +132,91 @@ const introCardsSlot = computed(() =>
   align-items: center;
   justify-content: center;
 }
-.introduction-cards {
+.introduction-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  background: var(--scalar-background-1);
 }
-.introduction-cards-row {
-  flex-direction: row;
+.introduction-card-item {
+  display: flex;
+  overflow: hidden;
+  border: var(--scalar-border-width) solid var(--scalar-border-color);
+  border-radius: var(--scalar-radius-lg);
+  margin-bottom: 12px;
+  flex-direction: column;
+  justify-content: start;
+}
+@container narrow-references-container (max-width: 900px) {
+  .introduction-card-item {
+    border-bottom: var(--scalar-border-width) solid var(--scalar-border-color);
+  }
+}
+.introduction-card-item:has(.description) :deep(.server-form-container) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.introduction-card-item :deep(.request-item) {
+  border-bottom: 0;
+}
+.introduction-card-title {
+  font-weight: var(--scalar-semibold);
+  font-size: var(--scalar-mini);
+  color: var(--scalar-color-3);
+}
+.introduction-card-row {
   gap: 24px;
-  --default-theme-background-2: var(--default-theme-background-1);
-  --theme-background-2: var(--theme-background-1);
 }
-.introduction-cards-row > * {
+@media (min-width: 600px) {
+  .introduction-card-row {
+    flex-flow: row wrap;
+  }
+}
+.introduction-card-row > * {
   flex: 1;
 }
-.references-narrow .introduction-cards-row {
-  flex-direction: column;
-  align-items: stretch;
+@media (min-width: 600px) {
+  .introduction-card-row > * {
+    min-width: min-content;
+  }
+}
+@media (max-width: 600px) {
+  .introduction-card-row > * {
+    max-width: 100%;
+  }
+}
+@container (max-width: 900px) {
+  .introduction-card-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+  }
+}
+.introduction-card :deep(.security-scheme-label) {
+  text-transform: uppercase;
+  font-weight: var(--scalar-semibold);
+}
+.references-classic
+  .introduction-card-row
+  :deep(.scalar-card:nth-of-type(2) .scalar-card-header) {
+  display: none;
+}
+.references-classic
+  .introduction-card-row
+  :deep(.scalar-card:nth-of-type(2) .scalar-card-header) {
+  display: none;
+}
+.references-classic
+  .introduction-card-row
+  :deep(
+    .scalar-card:nth-of-type(2)
+      .scalar-card-header.scalar-card--borderless
+      + .scalar-card-content
+  ) {
+  margin-top: 0;
+}
+.section-flare {
+  top: 0;
+  right: 0;
+  pointer-events: none;
 }
 </style>

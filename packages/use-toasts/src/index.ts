@@ -1,2 +1,2 @@
-export * from './FlowToast'
-export { default as FlowToastContainer } from './FlowToastContainer.vue'
+export { default as ScalarToasts } from './components/ScalarToasts.vue'
+export * from './hooks'

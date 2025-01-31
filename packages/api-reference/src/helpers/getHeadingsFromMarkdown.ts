@@ -1,36 +1,22 @@
-import remarkHeadings from '@vcarl/remark-headings'
+import { getHeadings } from '@scalar/code-highlight/markdown'
+import type { Heading } from '@scalar/types/legacy'
 import GithubSlugger from 'github-slugger'
-import remarkParse from 'remark-parse'
-import remarkStringify from 'remark-stringify'
-import { unified } from 'unified'
 
-export type Heading = {
-  depth: number
-  value: string
-  slug?: string
-}
-
-export type Headings = Heading[]
-
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkStringify)
-  .use(remarkHeadings)
-
-export const getHeadingsFromMarkdown = async (
-  input: string,
-): Promise<Headings> => {
-  const slugger = new GithubSlugger()
-
-  const { headings } = (await processor.process(input)).data
-
-  return withSlugs(headings as Headings, slugger)
-}
-
-const withSlugs = (headings: Headings, slugger: GithubSlugger): Headings =>
+const withSlugs = (headings: Heading[], slugger: GithubSlugger): Heading[] =>
   headings.map((heading) => {
     return {
       ...heading,
       slug: slugger.slug(heading.value),
     }
   })
+
+/**
+ * Extracts all headings from a Markdown string.
+ */
+export function getHeadingsFromMarkdown(input: string): Heading[] {
+  const slugger = new GithubSlugger()
+
+  const headings = getHeadings(input)
+
+  return withSlugs(headings as Heading[], slugger)
+}

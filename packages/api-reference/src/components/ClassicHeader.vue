@@ -1,11 +1,9 @@
-<script setup lang="ts">
-import DarkModeIconToggle from './DarkModeIconToggle.vue'
-</script>
+<script setup lang="ts"></script>
 <template>
   <div class="references-classic-header-container">
     <div class="references-classic-header">
       <slot />
-      <DarkModeIconToggle />
+      <slot name="dark-mode-toggle" />
     </div>
   </div>
 </template>
@@ -20,17 +18,19 @@ import DarkModeIconToggle from './DarkModeIconToggle.vue'
   margin: auto;
   padding: 12px 0;
 }
-.references-narrow .references-classic-header {
-  padding: 12px 24px;
-}
 .references-classic-header-container {
   padding: 0 60px;
 }
-.references-narrow .references-classic-header-container {
-  padding: 0;
+@container narrow-references-container (max-width: 900px) {
+  .references-classic-header {
+    padding: 12px 24px;
+  }
+  .references-classic-header-container {
+    padding: 0;
+  }
 }
 .references-classic-header-icon {
   height: 24px;
-  color: var(--theme-color-1, var(--default-theme-color-1));
+  color: var(--scalar-color-1);
 }
 </style>

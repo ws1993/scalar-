@@ -1,4 +1,4 @@
-import { type Spec } from '../types'
+import type { Spec } from '@scalar/types/legacy'
 
 export const hasSecuritySchemes = (spec?: Spec) => {
   // TODO: Show security schemes

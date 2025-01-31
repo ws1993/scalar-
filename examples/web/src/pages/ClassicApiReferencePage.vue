@@ -3,13 +3,12 @@ import {
   ApiReference,
   type ReferenceConfiguration,
 } from '@scalar/api-reference'
+import content from '@scalar/galaxy/latest.yaml?raw'
 import { reactive } from 'vue'
-
-import content from '../fixtures/petstorev3.json'
 
 const configuration = reactive<ReferenceConfiguration>({
   theme: 'default',
-  proxy: 'http://localhost:5051',
+  proxyUrl: import.meta.env.VITE_REQUEST_PROXY_URL,
   isEditable: false,
   layout: 'classic',
   spec: { content },

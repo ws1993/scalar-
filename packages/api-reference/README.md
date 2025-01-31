@@ -4,7 +4,7 @@
 [![Downloads](https://img.shields.io/npm/dm/%40scalar/api-reference)](https://www.npmjs.com/package/@scalar/api-reference)
 [![Hits on jsdelivr](https://img.shields.io/jsdelivr/npm/hm/%40scalar%2Fapi-reference)](https://www.jsdelivr.com/package/npm/@scalar/api-reference)
 [![License](https://img.shields.io/npm/l/%40scalar%2Fapi-reference)](https://www.npmjs.com/package/@scalar/api-reference)
-[![Discord](https://img.shields.io/discord/1135330207960678410?style=flat&color=5865F2)](https://discord.gg/8HeZcRGPFS)
+[![Discord](https://img.shields.io/discord/1135330207960678410?style=flat&color=5865F2)](https://discord.gg/scalar)
 
 Generate interactive API documentations from Swagger files. [Try our Demo](https://docs.scalar.com/swagger-editor)
 
@@ -21,6 +21,7 @@ npm install @scalar/api-reference
 ```vue
 <script setup>
 import { ApiReference } from '@scalar/api-reference'
+import '@scalar/api-reference/style.css'
 </script>
 
 <template>
@@ -28,117 +29,128 @@ import { ApiReference } from '@scalar/api-reference'
 </template>
 ```
 
-You can even [mount the component in React](https://github.com/scalar/scalar/blob/main/examples/react/src/App.tsx).
+### CDN
 
-## Configuration
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Scalar API Reference</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- Need a Custom Header? Check out this example: https://codepen.io/scalarorg/pen/VwOXqam -->
+    <!-- Note: We’re using our public proxy to avoid CORS issues. You can remove the `data-proxy-url` attribute if you don’t need it. -->
+    <script
+      id="api-reference"
+      data-url="https://cdn.jsdelivr.net/npm/@scalar/galaxy/dist/latest.yaml"
+      data-proxy-url="https://proxy.scalar.com"></script>
 
-There’s a configuration object that can be used on all platforms. In Vue.js, you use it like this:
+    <!-- Optional: You can set a full configuration object like this: -->
+    <script>
+      var configuration = {
+        theme: 'purple',
+      }
 
-#### isEditable?: boolean
+      document.getElementById('api-reference').dataset.configuration =
+        JSON.stringify(configuration)
+    </script>
 
-Whether the Swagger editor should be shown.
-
-```vue
-<ApiReference :configuration="{ isEditable: true }" />
+    <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+  </body>
+</html>
 ```
 
-#### spec.content?: string
+You can also use the following syntax to directly pass an OpenAPI specification:
 
-Directly pass an OpenAPI/Swagger spec.
-
-```vue
-<ApiReference :configuration="{ spec: { content: '{ … }' } }" />
+```html
+<script
+  id="api-reference"
+  type="application/json">
+  { … }
+</script>
 ```
 
-#### spec.url?: string
+If you’d like to add a request proxy for the API client (to avoid CORS issues):
 
-Pass the URL of a spec file (JSON or Yaml).
-
-```vue
-<ApiReference :configuration="{ spec: { url: '/swagger.json' } }" />
+```html
+<script
+  id="api-reference"
+  type="application/json"
+  data-proxy-url="https://proxy.scalar.com">
+  { … }
+</script>
 ```
 
-#### spec.preparsedContent?: string
+#### Events [beta]
 
-You can preprocess specs with `@scalar/swagger-parser` and directly pass the result.
+We have recently added two events to the standalone CDN build only.
 
-```vue
-<ApiReference :configuration="{ spec: { preparsedContent : '{ … }' } } />
+##### scalar:reload-references
+
+Reload the references, this will re-mount the app in case you have switched pages or the dom
+elements have been removed.
+
+```ts
+document.dispatchEvent(new Event('scalar:reload-references'))
 ```
 
-#### proxyUrl?: string
+##### scalar:update-references-config
 
-Making requests to other domains is restricted in the browser and requires [CORS headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). It’s recommended to use a proxy to send requests to other origins.
+If you have updated the config or spec, you can trigger this event with the new payload to update
+the app. It should update reactively so you do not need to trigger the reload event above after.
 
-```vue
-<ApiReference :configuration="{ proxy: 'https://proxy.example.com' }" />
+```ts
+import { type ReferenceProps } from './types'
+
+const ev = new CustomEvent('scalar:update-references-config', {
+  detail: {
+    configuration: {
+      spec: {
+        url: 'https://cdn.jsdelivr.net/npm/@scalar/galaxy/dist/latest.yaml',
+      },
+    },
+  } satisfies ReferenceProps,
+})
+document.dispatchEvent(ev)
 ```
 
-ℹ️ You can use [@scalar/api-client-proxy](https://github.com/scalar/scalar/tree/main/packages/api-client-proxy) to host your own proxy or you can just use ours:
+## Vue.js
 
-```vue
-<ApiReference
-  :configuration="{ proxy: 'https://api.scalar.com/request-proxy' }" />
+The API Reference is built in Vue.js. If you’re working in Vue.js, too, you can directly use our Vue components.
+Install them via `npm`:
+
+```bash
+npm install @scalar/api-reference
 ```
 
-#### showSidebar?: boolean
-
-Whether the sidebar should be shown.
+And import the `ApiReference` component and style to your app:
 
 ```vue
-<ApiReference :configuration="{ showSidebar: true} />
-```
-
-### customCss?: string
-
-You can pass custom CSS directly to the component. This is helpful for the integrations for Fastify, Express, Hono and others where you it’s easier to add CSS to the configuration.
-
-In Vue or React you’d probably use other ways to add custom CSS.
-
-```vue
-<script setup>
-const customCss = `* { font-family: "Comic Sans MS", cursive, sans-serif; }`
+<script setup lang="ts">
+import { ApiReference } from '@scalar/api-reference'
+import '@scalar/api-reference/style.css'
 </script>
 
 <template>
-  <ApiReference :configuration="{ customCss }" />
+  <ApiReference
+    :configuration="{
+      spec: {
+        url: 'https://cdn.jsdelivr.net/npm/@scalar/galaxy/dist/latest.yaml',
+      },
+    }" />
 </template>
 ```
 
-#### searchHotKey?: string
+You can [pass props to customize the API reference](https://github.com/scalar/scalar/tree/main/documentation/configuration.md).
 
-Key used with CNTRL/CMD to open the search modal (defaults to 'k' e.g. CMD+k)
+## Community
 
-```vue
-<ApiReference :configuration="{ searchHotKey: 'l'} />
-```
+We are API nerds. You too? Let’s chat on Discord: <https://discord.gg/scalar>
 
-#### metaData?: object
+## License
 
-You can pass information to the config object to configure meta information out of the box.
-
-```vue
-<ApiReference :configuration="{
-  metaData: {
-        title: 'Page title',
-        description: 'My page page',
-        ogDescription: 'Still about my my page',
-        ogTitle: 'Page title',
-        ogImage: 'https://example.com/image.png',
-        twitterCard: 'summary_large_image',
-        //Add more...
-      }
-  } />
-```
-
-#### onSpecUpdate?: (spec: string) => void
-
-You can listen to spec changes with onSpecUpdate that runs on spec/swagger content change
-
-```vue
-<ApiReference :configuration="{
-    onSpecUpdate: (value: string) => {
-      console.log('Content updated:', value)
-    }
-  } />
-```
+The source code in this repository is licensed under [MIT](https://github.com/scalar/scalar/blob/main/LICENSE).

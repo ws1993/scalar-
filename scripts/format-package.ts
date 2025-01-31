@@ -18,6 +18,15 @@ type PackageType = 'examples' | 'packages'
  * Sorts, defaults and overrides keys as specified in the definitions below
  */
 
+/** While we strive to make everything ESM, we just accept that some packages aren’t ESM. */
+const NO_MODULE_PACKAGES = [
+  'scalar-app',
+  '@scalar/docusaurus',
+  '@scalar-examples/docusaurus',
+  '@scalar-examples/nestjs-api-reference-express',
+  '@scalar-examples/nestjs-api-reference-fastify',
+]
+
 /** List of keys to sort and format */
 const restrictedKeys = [
   'name',
@@ -26,6 +35,7 @@ const restrictedKeys = [
   'author',
   'homepage',
   'bugs',
+  'repository',
   'keywords',
   'version',
   'private',
@@ -71,10 +81,10 @@ async function formatPackage(filepath: string) {
 
   const data = JSON.parse(file)
 
-  if (data.type !== 'module') {
+  if (data.type !== 'module' && !NO_MODULE_PACKAGES.includes(data.name)) {
     printColor(
       'brightRed',
-      `Package ${data.name} must be an ESM module with "type"="module"`,
+      `Package ${data.name} must be an ECMAScript module with "type": "module"`,
     )
   }
   if (
@@ -108,6 +118,18 @@ async function formatPackage(filepath: string) {
     }
   })
 
+  // Repository URL
+  const directory = path.relative(
+    path.join(__dirname, '..'),
+    path.dirname(filepath),
+  )
+
+  formattedData['repository'] = {
+    type: 'git',
+    url: 'git+https://github.com/scalar/scalar.git',
+    directory,
+  }
+
   // Validate before sorting
   // Check that required scripts are entered
   validatePackageScripts(formattedData['scripts'], formattedData.name)
@@ -119,10 +141,12 @@ async function formatPackage(filepath: string) {
     }
   })
 
-  if (JSON.stringify(data) !== JSON.stringify(formattedData)) {
-    printColor('green', `[${formattedData.name}] package.json formatted`)
+  // Check whether the package.json needs to be updated
+  if (JSON.stringify(data) === JSON.stringify(formattedData)) {
+    return
   }
 
+  // Update the package.json
   await fs
     .writeFile(filepath, JSON.stringify(formattedData, null, 2) + '\n')
     .catch((err) => console.error(err))

@@ -1,31 +1,39 @@
 <script setup lang="ts">
-import { type VariantProps } from 'cva'
+import type { VariantProps } from 'cva'
 import { computed } from 'vue'
 
-import { cva, cx } from '@/cva'
+import { cva } from '../../cva'
+import { useBindCx } from '../../hooks/useBindCx'
+import { type Icon, type Logo, getIcon, getLogo } from './utils'
 
-import SvgRenderer from './SvgRenderer'
-import { type Icon, getIcon } from './icons/'
+/**
+ * Icon wrapper for all icons and logos
+ */
 
 type IconVariants = VariantProps<typeof iconProps>
 
-/**
- * Icon wrapper for all scalar icons
- */
 const props = defineProps<{
-  icon: Icon
+  icon?: Icon
+  logo?: Logo
   size?: IconVariants['size']
+  thickness?: string
+  label?: string
 }>()
+
+defineOptions({ inheritAttrs: false })
+const { cx } = useBindCx()
 
 const iconProps = cva({
   variants: {
     size: {
-      xs: 'h-3 w-3',
-      sm: 'h-3.5 w-3.5',
-      md: 'h-4 w-4',
-      lg: 'h-5 w-5',
-      xl: 'h-6 w-6',
-      full: 'h-full w-full',
+      'xs': 'size-3',
+      'sm': 'size-3.5',
+      'md': 'size-4',
+      'lg': 'size-5',
+      'xl': 'size-6',
+      '2xl': 'size-8',
+      '3xl': 'size-10',
+      'full': 'size-full',
     },
   },
   defaultVariants: {
@@ -33,12 +41,35 @@ const iconProps = cva({
   },
 })
 
-const data = computed(() => getIcon(props.icon))
-</script>
+const stroke = computed(() => props.thickness ?? '2')
 
+const accessibilityAttrs = computed(() =>
+  props.label
+    ? { ariaLabel: props.label }
+    : {
+        ariaHidden: true,
+        role: 'presentation',
+      },
+)
+
+const svg = computed(() => {
+  if (props.icon) return getIcon(props.icon)
+  if (props.logo) return getLogo(props.logo)
+
+  return undefined
+})
+</script>
 <template>
-  <SvgRenderer
-    v-if="data"
-    :class="cx('scalar-icon', iconProps({ size }))"
-    :raw="data" />
+  <component
+    :is="svg"
+    v-bind="{
+      ...cx('scalar-icon', iconProps({ size })),
+      ...accessibilityAttrs,
+    }" />
 </template>
+<style scoped>
+.scalar-icon,
+.scalar-icon * {
+  stroke-width: v-bind(stroke);
+}
+</style>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useApiClientStore } from '@scalar/api-client'
 import { ScalarIconButton } from '@scalar/components'
+
+import { useSidebar } from '../hooks'
 
 defineProps<{
   open?: boolean
@@ -10,7 +11,7 @@ defineEmits<{
   (event: 'update:open', open: boolean): void
 }>()
 
-const { state } = useApiClientStore()
+const { breadcrumb } = useSidebar()
 </script>
 <template>
   <div class="references-mobile-header t-doc__header">
@@ -19,9 +20,7 @@ const { state } = useApiClientStore()
       :label="open ? 'Close Menu' : 'Open Menu'"
       size="md"
       @click="$emit('update:open', !open)" />
-    <span class="references-mobile-breadcrumbs">{{
-      state.activeBreadcrumb
-    }}</span>
+    <span class="references-mobile-breadcrumbs">{{ breadcrumb }}</span>
     <div class="references-mobile-header-actions">
       <slot name="actions" />
     </div>
@@ -29,23 +28,21 @@ const { state } = useApiClientStore()
 </template>
 <style scoped>
 .references-mobile-header {
-  display: flex;
+  display: none;
   align-items: center;
-  gap: 12px;
   height: 100%;
   width: 100%;
   padding: 0 8px;
-  background: var(--theme-background-1, var(--default-theme-background-1));
-  border-bottom: 1px solid
-    var(--theme-border-color, var(--default-theme-border-color));
+  background: var(--scalar-background-1);
+  border-bottom: 1px solid var(--scalar-border-color);
 }
 
 .references-mobile-breadcrumbs {
   flex: 1;
   min-width: 0;
-  font-size: var(--theme-small, var(--default-theme-small));
-  font-weight: var(--theme-semibold, var(--default-theme-semibold));
-  color: var(--theme-color-1, var(--default-theme-color-1));
+  font-size: var(--scalar-small);
+  font-weight: var(--scalar-semibold);
+  color: var(--scalar-color-1);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -58,5 +55,11 @@ const { state } = useApiClientStore()
   height: 24px;
   align-items: center;
   padding-left: 4px;
+}
+
+@media (max-width: 1000px) {
+  .references-mobile-header {
+    display: flex;
+  }
 }
 </style>

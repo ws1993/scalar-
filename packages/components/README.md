@@ -1,123 +1,132 @@
-# Scalar's Component Library
+# Scalar Components
 
-Scalars internal component library now open sourced and [almost] ready to use! it's besed used with our themeing library OR if you want you can simply set the css vars yourself. Refer to the variable legend below. This project is still very early!
+<!-- Hide badges on Storybook -->
+<div class="sb-hide">
 
-## Install
+[![Storybook](https://img.shields.io/badge/storybook-%23e1618c?logo=storybook&logoColor=%23fff)](https://scalar-components.netlify.app/)
+[![Version](https://img.shields.io/npm/v/%40scalar/components)](https://www.npmjs.com/package/@scalar/components)
+[![Downloads](https://img.shields.io/npm/dm/%40scalar/components)](https://www.npmjs.com/package/@scalar/components)
+[![License](https://img.shields.io/npm/l/%40scalar%2Fcomponents)](https://www.npmjs.com/package/@scalar/components)
+[![Discord](https://img.shields.io/discord/1135330207960678410?style=flat&color=5865F2)](https://discord.gg/scalar)
+
+</div>
+
+Scalar Components provides a library of components used across Scalar products. The library is designed to work seamlessly with our [theming system](https://github.com/scalar/scalar/tree/main/packages/themes) and includes a scoped copy of the themes reset, base variables and colors.
+
+<!-- Hide the storybook link on Storybook -->
+<div class="sb-hide">
+
+Want to explore the components? Check out the [Storybook](https://scalar-components.netlify.app/) for a live demo.
+
+</div>
+
+## Installation
 
 ```bash
-pnpm i @scalar/theme @scalar/components
+pnpm i @scalar/components
+```
+
+## Scoping
+
+Because many Scalar applications are embedded into other websites the components reset and styles are scoped to the `scalar-app` class. This means you need to add this class to the root element of your application where you want the to use the components. If you are using the components in a standalone application, you can just add this class to the `body` element.
+
+```html
+<body class="scalar-app">
+  <!-- Use components in here -->
+</body>
 ```
 
 ## Usage
 
-If you are using tailwind, make sure to import these after your tailwind reset or the styles will get overwritten.
-
-In your main setup file (main.ts etc)
+To get started, import the CSS styles in your main setup file (e.g., main.ts, index.ts, or App.vue):
 
 ```ts
 import '@scalar/components/style.css'
-import '@scalar/themes/base.css'
 ```
 
-Then to use the components
+Then, you can use the components in your Vue components. For example:
 
-```vue
-<script setup lang="ts">
-import { ScalarButton, ScalarTextField } from '@scalar/components'
+```html
+<script
+  setup
+  lang="ts">
+  import { ScalarIcon } from '@scalar/components'
 </script>
-
 <template>
-  <main class="col-1 items-center justify-center">
-    <div
-      class="col w-full max-w-md items-center gap-4 rounded-lg bg-back-3 p-8 shadow">
-      <h1 className="text-lg font-bold">Sign in to your account</h1>
-
-      <ScalarTextField
-        class="w-full"
-        label="Email Address" />
-      <ScalarButton fullWidth>Login</ScalarButton>
-    </div>
-  </main>
+  <ScalarIcon
+    icon="Logo"
+    size="lg" />
 </template>
 ```
 
-## Theme variables
+## Customizing Components
 
-To override the theme, feel free to set the `--theme-x` versions of these variables.
+Most components can be customized using props. For example, the `ScalarIcon` component can be customized with the `size` prop to change the size of the icon.
 
-```ts
-export const theme = {
-  boxShadow: {
-    label:
-      '0 0 2px 2px var(--theme-background-1, var(--default-theme-background-1))',
-    DEFAULT: 'var(--theme-shadow-1, var(--default-theme-shadow-1))',
-    md: 'var(--theme-shadow-2, var(--default-theme-shadow-2))',
-    sm: 'rgba(0, 0, 0, 0.09) 0px 1px 4px',
-    none: '0 0 #0000',
-  },
-  colors: {
-    'fore-1': 'var(--theme-color-1, var(--default-theme-color-1))',
-    'fore-2': 'var(--theme-color-2, var(--default-theme-color-2))',
-    'fore-3': 'var(--theme-color-3, var(--default-theme-color-3))',
-    'accent': 'var(--theme-color-accent, var(--default-theme-color-accent))',
-    'back-1': 'var(--theme-background-1, var(--default-theme-background-1))',
-    'back-2': 'var(--theme-background-2, var(--default-theme-background-2))',
-    'back-3': 'var(--theme-background-3, var(--default-theme-background-3))',
-    'back-accent':
-      'var(--theme-background-accent, var(--default-theme-background-accent))',
-
-    'backdrop': 'rgba(0, 0, 0, 0.44)',
-    'border': 'var(--theme-border-color, var(--default-theme-border-color))',
-
-    'back-btn-1': 'var(--theme-button-1, var(--default-theme-button-1))',
-    'fore-btn-1':
-      'var(--theme-button-1-color, var(--default-theme-button-1-color))',
-    'hover-btn-1':
-      'var(--theme-button-1-hover, var(--default-theme-button-1-hover))',
-
-    'white': '#FFF',
-    'green': 'var(--theme-color-green, var(--default-theme-color-green))',
-    'red': 'var(--theme-color-red, var(--default-theme-color-red))',
-    'yellow': 'var(--theme-color-yellow, var(--default-theme-color-yellow))',
-    'blue': 'var(--theme-color-blue, var(--default-theme-color-blue))',
-    'orange': 'var(--theme-color-orange, var(--default-theme-color-orange))',
-    'purple': 'var(--theme-color-purple, var(--default-theme-color-purple))',
-    'error': 'var(--theme-error-color, var(--default-theme-color-red))',
-    'ghost': 'var(--theme-color-ghost, var(--default-theme-color-ghost))',
-    'transparent': 'transparent',
-  },
-  fontSize: {
-    xxs: 'var(--theme-micro, var(--default-theme-micro, var(--theme-font-size-5, var(--default-theme-font-size-5))))',
-    xs: 'var(--theme-mini, var(--default-theme-mini, var(--theme-font-size-4, var(--default-theme-font-size-4))))',
-    sm: 'var(--theme-small, var(--default-theme-small, var(--theme-font-size-3, var(--default-theme-font-size-3))))',
-    base: 'var(--theme-paragraph, var(--default-theme-paragraph, var(--theme-font-size-2, var(--default-theme-font-size-2))))',
-    lg: 'var(--theme-font-size-1, var(--default-theme-font-size-1))',
-  },
-} as const
-
-export const extend = {
-  borderRadius: {
-    DEFAULT: 'var(--theme-radius, var(--default-theme-radius))',
-    md: 'var(--theme-radius, var(--default-theme-radius))',
-    lg: 'var(--theme-radius-lg, var(--default-theme-radius-lg))',
-    xl: 'var(--theme-radius-xl, var(--default-theme-radius-xl))',
-  },
-  fontWeight: {
-    medium: 'var(--theme-font-medium, var(--default-theme-font-medium))',
-    bold: 'var(-theme-font-bold, var(--default-theme-font-bold))',
-  },
-  maxWidth: {
-    'screen-xs': '480px',
-    'screen-sm': '540px',
-    'screen-md': '640px',
-    'screen-lg': '800px',
-  },
-} as const
+```html
+<ScalarIcon
+  icon="Logo"
+  size="lg" />
 ```
 
-## Todo
+However, sometimes you need to override the default styles. Most components (soon to be all) use the `useBindCx` function to apply the Tailwind classes to the component. The function intelligently merges the component's classes with the provided classes allowing you to override preset classes.
 
-- documentation
-- github actions for lint, types, tests, build, npm deployment
-- implementation (can remove more base style here)
-- host storybook
+```html
+<!-- An icon you need to be really big -->
+<ScalarIcon
+  icon="Logo"
+  class="size-24" />
+```
+
+This will apply the `size-24` class to the icon and remove the `size-full` class that would normally be applied by default. For more information see the [useBindCx](https://github.com/scalar/scalar/blob/main/packages/components/src/hooks/useBindCx.ts) function.
+
+## Floating Components
+
+The component library includes a number of floating components including the `ScalarPopover`, `ScalarDropdown`, and `ScalarListbox` as well as a `ScalarFloating` primitive. All of the components use [Floating UI](https://floating-ui.com/docs/vue) under the hood and provide the same for interacting with the Floating UI API.
+
+When using the floating components the default slot renders reference / target element (e.g. a button) and a named slot renders the floating element (e.g. a menu). For example:
+
+```html
+<ScalarPopover>
+  <!-- Reference element -->
+  <ScalarButton>Open</ScalarButton>
+  <template #popover>
+    <!-- Floating element -->
+  </template>
+</ScalarPopover>
+```
+
+Since you can directly target the reference element with Tailwind classes any classes applied to the base component will be applied to the floating element (using useBindCx under the hood). For example:
+
+```html
+<!-- Will apply the class `w-48` to the floating element (the popover) -->
+<ScalarPopover class="w-48">
+  <!-- Will apply the class `w-full` to the reference element (the button) -->
+  <ScalarButton class="w-full">Open</ScalarButton>
+  <template #popover> ... </template>
+</ScalarPopover>
+```
+
+## CSS Layers
+
+The components package uses the same [CSS Layers](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) as the themes package to apply the theme styles. For more information see the [themes README](https://github.com/scalar/scalar/tree/main/packages/themes).
+
+## Contributing
+
+All pull requests should include the following checklist:
+
+```md
+## Component Checklist
+
+- [ ] Exported from `@scalar/components`
+- [ ] Has JSDocs for all:
+  - [ ] Components (with examples)
+  - [ ] Props
+  - [ ] Slots
+  - [ ] Emits
+  - [ ] Functions
+  - [ ] Types
+- [ ] Allows overriding of Tailwind classes where applicable (see useBindCx)
+- [ ] Has stories showcasing any applicable variants
+- [ ] Has unit tests covering any applicable interactions
+```

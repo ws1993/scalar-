@@ -1,60 +1,119 @@
 <script setup lang="ts">
-import { computedAsync } from '@vueuse/core'
+import { getHeadings, splitContent } from '@scalar/code-highlight/markdown'
+import { ScalarMarkdown } from '@scalar/components'
+import GithubSlugger from 'github-slugger'
+import { computed } from 'vue'
 
-import {
-  getHeadingId,
-  getHeadingsFromMarkdown,
-  getLowestHeadingLevel,
-  splitMarkdownInSections,
-} from '../../../helpers'
+import { joinWithSlash } from '../../../helpers'
+import { useNavState } from '../../../hooks'
 import IntersectionObserver from '../../IntersectionObserver.vue'
-import MarkdownRenderer from '../MarkdownRenderer.vue'
 
 const props = defineProps<{
+  /** Markdown document */
   value?: string
 }>()
 
-const sections = computedAsync(
-  async () => {
-    if (!props.value) {
-      return []
+/**
+ * Descriptions, but split into multiple sections.
+ * We need this to wrap the headings in IntersectionObserver components.
+ */
+const sections = computed(() => {
+  if (!props.value) {
+    return []
+  }
+
+  const slugger = new GithubSlugger()
+
+  const items = splitContent(props.value).map((markdown) => {
+    // Get “first” (and only) heading, if available
+    const [heading] = getHeadings(markdown)
+
+    // Generate an id for the heading
+    const id = heading
+      ? getHeadingId({
+          ...heading,
+          slug: slugger.slug(heading.value),
+        })
+      : undefined
+
+    return {
+      id,
+      content: markdown,
     }
+  })
 
-    const allHeadings = await getHeadingsFromMarkdown(props.value)
-    // We only add one level to the sidebar. By default all h1, but if there are no h1, then h2 …
-    const lowestHeadingLevel = getLowestHeadingLevel(allHeadings)
+  return items
+})
 
-    return await Promise.all(
-      splitMarkdownInSections(props.value, lowestHeadingLevel).map(
-        async (content) => {
-          const headings = await getHeadingsFromMarkdown(content)
+const { getHeadingId, isIntersectionEnabled, replaceUrlState } = useNavState()
 
-          return {
-            heading: headings[0],
-            content,
-          }
-        },
-      ),
-    )
-  },
-  [], // initial state
-)
+function handleScroll(headingId = '') {
+  if (!isIntersectionEnabled.value) return
+
+  replaceUrlState(headingId)
+}
+
+const slugger = new GithubSlugger()
+
+/** Add ids to all headings */
+const transformHeading = (node: Record<string, any>) => {
+  node.data = {
+    hProperties: {
+      id: getHeadingId({
+        depth: node.depth,
+        value: node.children[0].value,
+        slug: slugger.slug(node.children[0].value),
+      }),
+    },
+  }
+
+  return node
+}
 </script>
+
 <template>
-  <template v-if="value">
-    <div
-      v-for="(section, index) in sections"
-      :key="index">
-      <!-- With a Heading -->
-      <template v-if="section.heading">
-        <IntersectionObserver :id="getHeadingId(section.heading)">
-          <MarkdownRenderer :value="section.content" />
+  <div
+    v-if="value"
+    class="introduction-description">
+    <template
+      v-for="section in sections"
+      :key="section.id">
+      <!-- headings -->
+      <template v-if="section.id">
+        <IntersectionObserver
+          :id="section.id"
+          class="introduction-description-heading"
+          @intersecting="() => handleScroll(section.id)">
+          <ScalarMarkdown
+            :transform="transformHeading"
+            transformType="heading"
+            :value="section.content" />
         </IntersectionObserver>
       </template>
-      <!-- Without a heading -->
+      <!-- everything else -->
       <template v-else>
-        <MarkdownRenderer :value="section.content" />
+        <ScalarMarkdown
+          :value="section.content"
+          withImages />
       </template>
-    </div>
-  </template>
+    </template>
+  </div>
 </template>
+
+<style scoped>
+.introduction-description-heading {
+  scroll-margin-top: 64px;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+.markdown + .markdown {
+  margin-top: 1em;
+}
+.introduction-description {
+  display: flex;
+  flex-direction: column;
+}
+.references-classic .introduction-description :deep(img) {
+  max-width: 720px;
+}
+</style>

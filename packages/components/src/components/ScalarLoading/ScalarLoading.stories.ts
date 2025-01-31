@@ -10,21 +10,27 @@ const meta = {
   component: ScalarLoading,
   tags: ['autodocs'],
   argTypes: {
-    size: { control: 'string', default: '24px' },
+    class: { control: 'text' },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full'],
+    },
   },
-  render: () => ({
+  render: (args) => ({
     components: { ScalarButton, ScalarLoading },
     setup() {
       const loadingState = useLoadingState()
       loadingState.startLoading()
-      return { loadingState }
+      return { args, loadingState }
     },
     template: `
-      <div className="row gap-4 items-center">
-        <ScalarLoading :loadingState="loadingState" />
-        <ScalarButton @click="loadingState.validate()">Success</ScalarButton>
-        <ScalarButton variant="danger" @click="loadingState.invalidate()">Error</ScalarButton>
-        <ScalarButton variant="ghost" @click="loadingState.clear() && loadingState.startLoading()">Reset</ScalarButton>
+      <div className="row gap-16 items-center">
+        <ScalarLoading :loadingState="loadingState" v-bind="args" />
+        <div className="row gap-4 items-center">
+          <ScalarButton @click="loadingState.validate()">Validate</ScalarButton>
+          <ScalarButton variant="danger" @click="loadingState.invalidate()">Invalidate</ScalarButton>
+          <ScalarButton variant="outlined" @click="loadingState.clear() && loadingState.startLoading()">Clear</ScalarButton>
+        </div>
       </div>
     `,
   }),
@@ -33,4 +39,6 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Base: Story = {} as any
+export const Base: Story = { args: { size: 'lg' } }
+
+export const CustomClasses: Story = { args: { class: 'size-3 text-red' } }

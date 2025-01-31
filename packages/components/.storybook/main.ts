@@ -9,9 +9,8 @@ function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')))
 }
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.ts'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.ts'],
   addons: [
-    getAbsolutePath('@etchteam/storybook-addon-css-variables-theme'),
     getAbsolutePath('storybook-dark-mode'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),

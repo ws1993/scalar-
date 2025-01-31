@@ -3,13 +3,13 @@ import {
   ApiReference,
   type ReferenceConfiguration,
 } from '@scalar/api-reference'
+import content from '@scalar/galaxy/latest.yaml?raw'
 import { reactive } from 'vue'
 
 import SlotPlaceholder from '../components/SlotPlaceholder.vue'
-import content from '../fixtures/petstorev3.json'
 
 const configuration = reactive<ReferenceConfiguration>({
-  proxy: 'http://localhost:5051',
+  proxyUrl: import.meta.env.VITE_REQUEST_PROXY_URL,
   isEditable: false,
   spec: { content },
 })
@@ -38,7 +38,7 @@ const configuration = reactive<ReferenceConfiguration>({
 }
 .container {
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid #000;
   border-radius: 3px;
 }

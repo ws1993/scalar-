@@ -3,7 +3,8 @@ import { useTextareaAutosize } from '@vueuse/core'
 import { nanoid } from 'nanoid'
 import { type Ref, onMounted, ref, useAttrs } from 'vue'
 
-import { cva, cx } from '@/cva'
+import { cva, cx } from '../../cva'
+import { ScalarIcon } from '../ScalarIcon'
 
 const props = withDefaults(
   defineProps<{
@@ -23,8 +24,7 @@ const props = withDefaults(
   }>(),
   {
     emitOnBlur: true,
-    labelShadowColor:
-      'var(--theme-background-2, var(--default-theme-background-2))',
+    labelShadowColor: 'var(--scalar-background-1)',
     disableTrim: false,
   },
 )
@@ -37,9 +37,9 @@ const textField = cva({
   base: 'scalar-input-wrapper relative flex items-center rounded border border-solid border-border',
   variants: {
     focus: {
-      true: 'scalar-input-wrapper-focus border-fore-3 has-actv-btn:border has-actv-btn:border-border',
+      true: 'scalar-input-wrapper-focus border-c-3 has-actv-btn:border has-actv-btn:border-border',
     },
-    error: { true: 'scalar-input-wrapper-error border-error' },
+    error: { true: 'scalar-input-wrapper-error border-red' },
   },
 })
 
@@ -113,7 +113,7 @@ onMounted(() => {
         :class="
           cx(
             { 'min-h-[77px]': isMultiline },
-            'z-10 w-full resize-none appearance-none border-0 bg-transparent p-3 text-sm text-fore-1',
+            'z-10 w-full resize-none appearance-none border-0 bg-transparent p-3 text-sm text-c-1',
             'outline-none transition-opacity',
           )
         "
@@ -122,13 +122,13 @@ onMounted(() => {
         @blur="handleBlur"
         @focus="isFocused = true"
         @input="handleChange"
-        @keyup.enter="handleSubmit" />
+        @keydown.enter="handleSubmit" />
       <label
         v-if="label"
         :class="
           cx(
-            'scalar-input-label pointer-events-none absolute left-0 top-0 mx-2 my-3 px-1 text-xs',
-            'shadow-current z-10 origin-top-left rounded text-fore-3 transition-transform',
+            'scalar-input-label pointer-events-none absolute left-0 top-0 mx-2 my-3 px-1 text-sm',
+            'z-10 origin-top-left rounded text-c-3 shadow-current transition-transform',
           )
         "
         :for="uid"
@@ -139,18 +139,18 @@ onMounted(() => {
         {{ label }}
       </label>
       <div
-        class="icon-slot cursor-pointer text-ghost hover:text-fore-1 !empty:flex !empty:w-7 !empty:items-center !empty:pr-3">
+        class="icon-slot cursor-pointer text-c-ghost hover:text-c-1 !empty:flex !empty:w-7 !empty:items-center !empty:pr-3">
         <slot />
       </div>
     </div>
     <span
-      :class="
-        cx(
-          'helper-text mt-1.5 flex items-center text-xs text-error before:rounded-full before:font-black',
-          'before:mr-1.5 before:block before:h-4 before:w-4 before:text-center before:text-xxs before:leading-4',
-          `before:bg-error before:text-white before:content-['!'] empty:hidden`,
-        )
-      ">
+      v-if="helperText"
+      class="helper-text mt-1.5 flex items-center gap-1 text-sm"
+      :class="error ? 'font-medium text-red' : 'text-c-2'">
+      <ScalarIcon
+        v-if="error"
+        icon="Error"
+        size="sm" />
       {{ helperText }}
     </span>
   </div>
@@ -162,13 +162,13 @@ onMounted(() => {
   transition: opacity 0.2s ease-in-out 0.15s;
 }
 .scalar-input-wrapper-focus .scalar-input-label {
-  color: var(--theme-color-1, var(--default-theme-color-1));
+  color: var(--scalar-color-1);
 }
 .scalar-input-wrapper-error .scalar-input-label {
-  color: var(--theme-color-error-color, var(--default-theme-color-red));
+  color: var(--scalar-color-red);
 }
 .scalar-input::selection {
-  color: var(--theme-color-1, var(--default-theme-color-1));
+  color: var(--scalar-color-1);
   background: rgba(255, 165, 88, 0.35);
 }
 .scalar-input:has(+ .scalar-input-label) {
@@ -187,11 +187,10 @@ onMounted(() => {
 .scalar-input:focus-within:-webkit-autofill:hover,
 .scalar-input:focus-within:-webkit-autofill:focus,
 .scalar-input:focus-within:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px
-    var(--theme-background-1, var(--default-theme-background-1)) inset !important;
-  -webkit-text-fill-color: var(--theme-color-1, var(--default-theme-color-1));
-  color: var(--theme-color-1, var(--default-theme-color-1));
-  border-radius: var(--theme-radius, var(--default-theme-radius));
+  -webkit-box-shadow: 0 0 0px 1000px var(--scalar-background-1) inset !important;
+  -webkit-text-fill-color: var(--scalar-color-1);
+  color: var(--scalar-color-1);
+  border-radius: var(--scalar-radius);
 }
 .scalar-input-wrapper-focus .scalar-input-label,
 .scalar-input:not(:placeholder-shown) + .scalar-input-label {
@@ -204,6 +203,6 @@ onMounted(() => {
   transform-origin: top left;
 }
 .scalar-input-wrapper-focus:has(button:active) .scalar-input-label {
-  color: var(--theme-color-3, var(--default-theme-color-3)) !important;
+  color: var(--scalar-color-3) !important;
 }
 </style>

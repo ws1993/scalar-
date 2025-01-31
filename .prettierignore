@@ -3,6 +3,11 @@
 **/.hg
 **/node_modules
 **/dist/**
+**/.turbo/**
+**/.docusaurus/**
+**/build/**
+**/.next/**
+**/.nuxt/**
 
 /venv/
 **/venv
@@ -10,8 +15,17 @@
 **/.venv
 
 pnpm-lock.yaml
-.changeset/
+.changeset/*.md
 cdn
 
-fixtures
+
 .vite-ssg-temp
+.next
+
+examples/docusaurus/**/*.mdx
+integrations/nuxt/src/runtime/plugins/hydrateClient.d.mts
+packages/openapi-parser/tests/**/*.yaml
+packages/snippetz/src/httpsnippet-lite/**/*
+packages/components/storybook-static/**/*
+
+cloudbuild.json

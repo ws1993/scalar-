@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useApiClientStore } from '@scalar/api-client'
-
+import { useNavState, useSidebar } from '../../hooks'
 import IntersectionObserver from '../IntersectionObserver.vue'
 
 const props = defineProps<{
@@ -8,11 +7,17 @@ const props = defineProps<{
   label?: string
 }>()
 
-const { setBreadcrumb } = useApiClientStore()
+const { getSectionId, isIntersectionEnabled, replaceUrlState } = useNavState()
+const { setCollapsedSidebarItem } = useSidebar()
 
 function handleScroll() {
-  if (!props.label) return
-  setBreadcrumb(props.label)
+  if (!props.label || !isIntersectionEnabled.value) return
+
+  replaceUrlState(props.id ?? '')
+
+  // Open models and webhooks on scroll
+  if (props.id?.startsWith('model') || props.id?.startsWith('webhook'))
+    setCollapsedSidebarItem(getSectionId(props.id), true)
 }
 </script>
 <template>
@@ -34,15 +39,25 @@ function handleScroll() {
   max-width: var(--refs-content-max-width);
   margin: auto;
 
-  /* Extend by header height to line up scroll position */
-  padding: calc(90px + var(--refs-header-height)) 0 90px 0;
-  margin-top: calc(-1 * var(--refs-header-height));
+  padding: 90px 0;
+
+  /* Offset by header height to line up scroll position */
+  scroll-margin-top: var(--refs-header-height);
 }
-.references-narrow .section {
-  padding: calc(48px + var(--refs-header-height)) 24px 48px 24px;
+.section:has(~ div.contents) {
+  border-bottom: var(--scalar-border-width) solid var(--scalar-border-color);
+}
+.references-classic .section {
+  padding: 48px 0;
+  gap: 24px;
+}
+@container narrow-references-container (max-width: 900px) {
+  .references-classic .section,
+  .section {
+    padding: 48px 24px;
+  }
 }
 .section:not(:last-of-type) {
-  border-bottom: 1px solid
-    var(--theme-border-color, var(--default-theme-border-color));
+  border-bottom: var(--scalar-border-width) solid var(--scalar-border-color);
 }
 </style>

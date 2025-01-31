@@ -16,11 +16,10 @@ npm install @scalar/use-toasts
 ```vue
 // App.vue
 <script setup>
-import { FlowToastContainer } from '@scalar/use-toasts'
+import { ScalarToasts } from '@scalar/use-toasts'
 </script>
-
 <template>
-  <FlowToastContainer />
+  <ScalarToasts />
 </template>
 ```
 
@@ -29,6 +28,10 @@ import { FlowToastContainer } from '@scalar/use-toasts'
 <script setup>
 import { useToasts } from '@scalar/use-toasts'
 
-addToast({ title: 'Hello :-)' }, { timeout: 2000 })
+const { toast } = useToasts()
+
+const sendMessage = () => {
+  toast('This is a message from the toaster!', 'success', { timeout: 2000 })
+}
 </script>
 ```

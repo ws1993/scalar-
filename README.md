@@ -1,493 +1,947 @@
-# Scalar API Reference
-
 [![CI](https://github.com/scalar/scalar/actions/workflows/ci.yml/badge.svg)](https://github.com/scalar/scalar/actions/workflows/ci.yml)
-[![Release](https://github.com/scalar/scalar/actions/workflows/release.yml/badge.svg)](https://github.com/scalar/scalar/actions/workflows/release.yml)
 [![Contributors](https://img.shields.io/github/contributors/scalar/scalar)](https://github.com/scalar/scalar/graphs/contributors)
 [![GitHub License](https://img.shields.io/github/license/scalar/scalar)](https://github.com/scalar/scalar/blob/main/LICENSE)
-[![Discord](https://img.shields.io/discord/1135330207960678410?style=flat&color=5865F2)](https://discord.gg/8HeZcRGPFS)
+[![Discord](https://img.shields.io/discord/1135330207960678410?style=flat&color=5865F2)](https://discord.gg/scalar)
+[![Scalar App](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.todesktop.com%2Fv1%2FgetReleaseBuildIds%3FappId%3D240718bnjmcfyp4&query=%24.releases%5B%3A1%5D.version&label=Scalar%20App&labelColor=%231a1a1a&color=%23e7e7e7)](https://scalar.com/download)
 
-Generate interactive API documentations from Swagger files. [Try our Demo](https://docs.scalar.com/swagger-editor)
+<h1>
+	<p>Scalar</p>
+	<p>
+		<a href="https://scalar.com/download" target="_blank">
+			<picture>
+				<source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/b391b82f-d993-4e97-8a17-1c3c7ccbb19b">
+				<source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/579d0853-b2a5-4ea8-b2bd-a98753faeaf3">
+				<img width="48.494%" height="250" src="https://github.com/user-attachments/assets/b391b82f-d993-4e97-8a17-1c3c7ccbb19b#gh-light-mode-only" alt="Scalar API client">
+			</picture>
+		</a>
+		<a href="https://docs.scalar.com/swagger-editor" target="_blank">
+			<picture>
+				<source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/9b639f2d-0204-4b15-b918-158072a9afa5">
+				<source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/be723d07-ec9c-4edb-b657-05a8bc05c7d6">
+				<img width="48.494%" height="250" src="https://github.com/user-attachments/assets/9b639f2d-0204-4b15-b918-158072a9afa5#gh-light-mode-only" alt="Scalar API Reference">
+			</picture>
+	 	</a>
+	</p>
+</h1>
 
-[![Screenshot of an API Reference](https://github.com/scalar/scalar/assets/6201407/d8beb5e1-bf64-4589-8cb0-992ba79215a8)](https://docs.scalar.com/swagger-editor)
+<p>
+	<img width="830" height="520" src="https://github.com/user-attachments/assets/7c4d4971-a6d9-457d-a7ab-11894889f6f9#gh-light-mode-only">
+	<img width="830" height="520" src="https://github.com/user-attachments/assets/0e3ffca5-8912-487a-a390-fef0e8222c35#gh-dark-mode-only">
+</p>
 
-## Features
+### An offline first API Client built for OpenAPI
 
-- Uses Swagger/OpenAPI spec files
-- Request examples for a ton of languages + frameworks
-- Has an integrated API client
-- Edit your Swagger files with a live preview
-- Doesn’t look like it’s 2011
+└ Minimal, powerful & open-source <br>
+└ Integrates with dozens of API Frameworks (Elysia, Hono, FastAPI, etc)<br>
+└ Syncs directly with your server frameworks with our Watch Mode <br>
+└ First class OpenAPI (formerly Swagger) support <br>
+└ Environment variables and dynamic parameters <br>
+└ Save and organize requests into collections <br>
+└ <a href="https://scalar.com/download">Download (Windows, MacOS, Linux)</a> <br>
+└ <a href="https://client.scalar.com/">Try Online Demo</a>
 
-## Table of Contents
+<!-- minimal line break-->
+<p>
+	<img width="1200" height="1" src="https://github.com/user-attachments/assets/7d7e7ba7-2b02-49f3-abcd-b24c566a3c16#gh-light-mode-only">
+	<img width="1200" height="1" src="https://github.com/user-attachments/assets/341bfb1d-5cb0-4ec6-89eb-4b1dcc07eeb7#gh-dark-mode-only">
+</p>
+<!-- end minimal line break-->
 
-- [Getting Started](#getting-started)
-  - [From a CDN](#from-a-cdn)
-  - [With Vue.js](#with-vuejs)
-  - [With React](#with-react)
-  - [With Fastify](#with-fastify)
-  - [With Hono](#with-hono)
-  - [With Express](#with-express)
-  - [With NestJS](#with-nestjs)
-- [Hosted API Reference](#hosted-api-reference)
-- [Configuration](#configuration)
-- [Themes](#themes)
-- [Advanced: Styling](#advanced-styling)
-- [Community](#community)
-- [Other packages](#other-packages)
-- [Contributing](#contributors)
-- [License](#license)
+<p>
+	<img width="830" height="520" src="https://github.com/user-attachments/assets/718201bf-421a-4802-b0b0-2b016ee3f1b4#gh-light-mode-only">
+	<img width="830" height="520" src="https://github.com/user-attachments/assets/28b4b80c-2c12-4501-b403-1c1e4949941c#gh-dark-mode-only">
+</p>
 
-## Getting Started
+<h3>Interactive API Reference from OpenAPI/Swagger</h3>
+└ Uses OpenAPI/Swagger documents <br>
+└ Request examples for many favorite languages and frameworks <br>
+└ Comes with an integrated API playground <br>
+└ Integrates with your favorite framework <br>
+└ Doesn't look like 2011 <br>
+└ <a href="https://docs.scalar.com/swagger-editor">Try Demo</a>
 
-### From a CDN
+<!-- minimal line break-->
+<p>
+	<img width="1200" height="1" src="https://github.com/user-attachments/assets/7d7e7ba7-2b02-49f3-abcd-b24c566a3c16#gh-light-mode-only">
+	<img width="1200" height="1" src="https://github.com/user-attachments/assets/341bfb1d-5cb0-4ec6-89eb-4b1dcc07eeb7#gh-dark-mode-only">
+</p>
+<!-- end minimal line break-->
+
+### Trusted by:
+
+<br>
+
+<p>
+	<img width="48.494%" height="330" src="https://github.com/user-attachments/assets/73dcef95-fc4f-4111-bb09-f3ce37453a81#gh-light-mode-only">
+	<img width="48.494%" height="330" src="https://github.com/user-attachments/assets/1da6b904-34be-4760-b535-0dd2160e6d12#gh-light-mode-only">
+	<img width="48.494%" height="330" src="https://github.com/user-attachments/assets/c792c977-8551-432c-9417-3ea05e408151#gh-dark-mode-only">
+	<img width="48.494%" height="330" src="https://github.com/user-attachments/assets/54a9ea69-c50a-4f49-8c3e-ddd6f8fbe1f3#gh-dark-mode-only">
+</p>
+
+### Quickstart
+
+You’re just one HTML file away from having an awesome API reference:
 
 ```html
 <!doctype html>
 <html>
   <head>
-    <title>API Reference</title>
+    <title>Scalar API Reference</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        margin: 0;
-      }
-    </style>
   </head>
   <body>
-    <!-- Add your own OpenAPI/Swagger spec file URL here: -->
-    <!-- Note: this includes our proxy, you can remove the following line if you do not need it -->
-    <!-- data-proxy-url="https://api.scalar.com/request-proxy" -->
+    <!-- Need a Custom Header? Check out this example: https://codepen.io/scalarorg/pen/VwOXqam -->
+    <!-- Note: We’re using our public proxy to avoid CORS issues. You can remove the `data-proxy-url` attribute if you don’t need it. -->
     <script
       id="api-reference"
-      data-url="https://example.com/swagger.json"
-      data-proxy-url="https://api.scalar.com/request-proxy"></script>
+      data-url="https://cdn.jsdelivr.net/npm/@scalar/galaxy/dist/latest.yaml"
+      data-proxy-url="https://proxy.scalar.com"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
   </body>
 </html>
 ```
 
-You can also use the following syntax to directly pass an OpenAPI spec:
+And there’s an ever-growing list of plugins and integrations:
 
-```html
-<script
-  id="api-reference"
-  type="application/json">
-  { … }
-</script>
-```
+### Integrations
 
-If you’d like to add a request proxy for the API client (to avoid CORS issues):
+- [HTML](documentation/integrations/html.md) (works everywhere)
+- [.NET](integrations/aspnetcore/README.md)
+- [AdonisJS](documentation/integrations/adonisjs.md)
+- [Django](https://github.com/m1guer/django-scalar)
+- [Django Ninja](integrations/django-ninja/README.md)
+- [Docusaurus](integrations/docusaurus/README.md)
+- [Express](integrations/express/README.md)
+- [FastAPI](integrations/fastapi/README.md)
+- [Fastify](packages/fastify-api-reference/README.md)
+- [Go](documentation/integrations/go.md)
+- [Hono](integrations/hono/README.md)
+- [Laravel Scribe](documentation/integrations/laravel-scribe.md)
+- [NestJS](integrations/nestjs/README.md)
+- [Next.js](integrations/nextjs/README.md)
+- [Nuxt](integrations/nuxt/README.md)
+- [React](packages/api-reference-react/README.md)
+- [Ruby on Rails](https://github.com/dmytroshevchuk/scalar_ruby)
+- [Rust](documentation/integrations/rust.md)
+- [Scalar for Laravel](https://github.com/scalar/laravel)
+- [Ts.ED](https://tsed.dev/tutorials/scalar.html)
+- [Vue.js](packages/api-reference/README.md)
 
-```html
-<script
-  id="api-reference"
-  type="application/json"
-  data-proxy-url="https://api.scalar.com/request-proxy">
-  { … }
-</script>
-```
+### Built-in Support
 
-### With Vue.js
+The following frameworks have chosen Scalar API Reference as their default OpenAPI documentation UI, recognizing its developer-friendly features and modern design:
 
-The API Reference is built in Vue.js. If you’re working in Vue.js, too, you can directly use our Vue components. Just install them:
+- [ElysiaJS](documentation/integrations/elysiajs.md)
+- [HappyX](https://github.com/HapticX/happyx)
+- [Litestar](https://docs.litestar.dev/latest/usage/openapi/ui_plugins.html)
+- [Nitro](documentation/integrations/nitro.md)
+- [Platformatic](documentation/integrations/platformatic.md)
 
-```bash
-npm install @scalar/api-reference
-```
+<br>
 
-And import the `ApiReference` component to your app:
+### Managed Hosting
 
-```vue
-<script setup lang="ts">
-import { ApiReference } from '@scalar/api-reference'
-</script>
+We’re offering a free and paid managed hosting on the edge, too:
 
-<template>
-  <ApiReference />
-</template>
-```
+- Write your API documentation and publish your API references (free)
+- Get SSL and a super cool `*.apidocumentation.com` subdomain (free)
+- Write free text documentation (paid)
+- Collaborate with your whole team (paid)
+- Use any domain (paid)
 
-You can [pass props to customize the API reference](https://github.com/scalar/scalar/tree/main/packages/api-reference).
+Ready? [Create your account on scalar.com](https://scalar.com).
 
-### With React
+<br>
 
-The API Reference package is written in Vue. That shouldn’t stop you from using it in React, though. You can use [veaury](https://github.com/devilwjp/veaury) to load the `<APIReference />` component in React:
+### Projects
 
-```ts
-import { ApiReference as VueComponent } from '@scalar/api-reference'
-import { applyVueInReact } from 'veaury'
+| Project                                                     | Description            |
+| ----------------------------------------------------------- | ---------------------- |
+| [Scalar API Client](packages/api-client/README.md)          | API client             |
+| [Scalar CLI](packages/cli/README.md)                        | Command-line interface |
+| [Scalar Galaxy](packages/galaxy/README.md)                  | OpenAPI Example        |
+| [Scalar Play Button](packages/play-button/README.md)        | Quick API Client Embed |
+| [Scalar Mock Server](packages/mock-server/README.md)        | OpenAPI Mock Server    |
+| [Scalar Void Server](packages/void-server/README.md)        | HTTP Request Mirror    |
+| [Scalar Open API Parser](packages/openapi-parser/README.md) | OpenAPI SDK            |
+| [Scalar Sandbox](https://sandbox.scalar.com/)               | Online OpenAPI Editor  |
 
-const ApiReference = applyVueInReact(VueComponent)
+<br>
 
-function App() {
-  return (
-    <>
-      <ApiReference configuration={{ isEditable: true }} />
-    </>
-  )
-}
+### Documentation
 
-export default App
-```
+| Topic                                           | Description                        |
+| ----------------------------------------------- | ---------------------------------- |
+| [Themes](documentation/themes.md)               | Themes, layouts & styling          |
+| [Configuration](documentation/configuration.md) | The universal configuration object |
+| [OpenAPI](documentation/openapi.md)             | OpenAPI and our extensions to it   |
+| [Markdown](documentation/markdown.md)           | Markdown syntax                    |
 
-### With Fastify
+<br>
 
-Our fastify plugin makes it so easy to render a reference, there’s no excuse to not have a documentation for your API.
+### Community
 
-```ts
-await fastify.register(require('@scalar/fastify-api-reference'), {
-  routePrefix: '/reference',
-  configuration: {
-    spec: () => fastify.swagger(),
-  },
-})
-```
+We are API nerds. You too? Let’s chat on Discord: <https://discord.gg/scalar>
 
-Actually, it’s executing the `fastify.swagger()` call by default (if available). So that’s all you need to add:
+<br>
 
-```ts
-await fastify.register(require('@scalar/fastify-api-reference'), {
-  routePrefix: '/reference',
-})
-```
+### Contributions
 
-Read more: [@scalar/fastify-api-reference](https://github.com/scalar/scalar/tree/main/packages/fastify-api-reference)
+Contributions are welcome! Read the [`CONTRIBUTING`](CONTRIBUTING.md) guide.
 
-### With Hono
+**Top 10 Contributors (November 2024)**
 
-Our Hono middleware makes it so easy to render a reference:
+<p>
+	<img width="830" height="280" src="https://github.com/user-attachments/assets/f325a891-8b23-4c4f-97e8-8c0e768a9d4a#gh-light-mode-only">
+	<img width="830" height="280" src="https://github.com/user-attachments/assets/8811e01d-914b-4a4b-8d24-166b360fa637#gh-dark-mode-only">
+</p>
 
-```ts
-import { apiReference } from '@scalar/hono-api-reference'
+<br>
+<br>
 
-app.get(
-  '/reference',
-  apiReference({
-    spec: {
-      url: '/swagger.json',
-    },
-  }),
-)
-```
-
-Read more: [@scalar/hono-api-reference](https://github.com/scalar/scalar/tree/main/packages/hono-api-reference)
-
-### With Express
-
-Our Express middleware makes it so easy to render a reference:
-
-```ts
-import { apiReference } from '@scalar/express-api-reference'
-
-app.use(
-  '/reference',
-  apiReference({
-    spec: {
-      content: OpenApiSpecification,
-    },
-  }),
-)
-```
-
-Read more: [@scalar/express-api-reference](https://github.com/scalar/scalar/tree/main/packages/express-api-reference)
-
-### With NestJS
-
-Our NestJS middleware makes it so easy to render a reference:
-
-```ts
-import { apiReference } from '@scalar/nestjs-api-reference'
-
-app.use(
-  '/reference',
-  apiReference({
-    spec: {
-      url: '/swagger.json',
-    },
-  }),
-)
-```
-
-Read more: [@scalar/nestjs-api-reference](https://github.com/scalar/scalar/tree/main/packages/nestjs-api-reference)
-
-## Hosted API Reference
-
-Wait, this is open source and you can do whatever you want. But if you want to add a nice, customizable guide, collaborate with your team and have everything served through a CDN, create an account on [scalar.com](https://scalar.com).
-
-## Configuration
-
-To customize the behavior of the API Reference, you can use the following configuration options:
-
-- `isEditable`: Whether the Swagger editor should be shown.
-- `spec.content`: Directly pass an OpenAPI/Swagger spec.
-- `spec.url`: Pass the URL of a spec file (JSON or YAML).
-- `spec.preparsedContent`: Preprocess specs with `@scalar/swagger-parser` and directly pass the result.
-- `proxyUrl`: Use a proxy to send requests to other origins.
-- `showSidebar`: Whether the sidebar should be shown.
-- `customCss`: Pass custom CSS directly to the component.
-- `searchHotKey`: Key used with CNTRL/CMD to open the search modal.
-- `metaData`: Configure meta information for the page.
-- `onSpecUpdate`: Listen to spec changes with a callback function.
-
-For detailed information on how to use these options, refer to the [Configuration Section](https://github.com/scalar/scalar/blob/main/packages/api-reference/README.md/#configuration).
-
-## Themes
-
-You don’t like the color scheme? We’ve prepared some themes for you:
-
-```vue
-/* theme?: 'alternate' | 'default' | 'moon' | 'purple' | 'solarized' */
-<ApiReference :configuration="{ theme: 'moon' }" />
-```
-
-ℹ️ The `default` theme is … the default theme. If you want to make sure no theme is applied, pass `none`.
-
-## Advanced: Styling
-
-Overwrite our CSS variables. We won’t judge.
-
-```
-:root {
-  --theme-font: 'Comic Sans MS', 'Comic Sans', cursive;
-}
-```
-
-We’re using the `default-` prefix for our variables to not overwrite your variables. You can [use all variables without a prefix](https://github.com/scalar/scalar/blob/main/packages/themes/src/base.css).
-
-```css
-/* ✅ Good (without `default` prefix) */
---theme-font: 'Comic Sans MS', 'Comic Sans', cursive;
-/* ❌ Bad (with `default` prefix) */
---default-theme-font: 'Comic Sans MS', 'Comic Sans', cursive;
-```
-
-Overwrite our night mode and day mode variables to build your own themes. Here are some of the basic variables to get you started:
-
-![basic-scalar-variables](https://github.com/scalar/scalar/assets/6201407/63524321-66d2-44d0-8509-3db7e045a315)
-
-```
-.light-mode {
-  --theme-color-1: #121212;
-  --theme-color-2: rgba(0, 0, 0, 0.6);
-  --theme-color-3: rgba(0, 0, 0, 0.4);
-  --theme-color-accent: #0a85d1;
-  --theme-background-1: #fff;
-  --theme-background-2: #f6f5f4;
-  --theme-background-3: #f1ede9;
-  --theme-background-accent: #5369d20f;
-  --theme-border-color: rgba(0, 0, 0, 0.08);
-}
-.dark-mode {
-  --theme-color-1: rgba(255, 255, 255, 0.81);
-  --theme-color-2: rgba(255, 255, 255, 0.443);
-  --theme-color-3: rgba(255, 255, 255, 0.282);
-  --theme-color-accent: #8ab4f8;
-  --theme-background-1: #202020;
-  --theme-background-2: #272727;
-  --theme-background-3: #333333;
-  --theme-background-accent: #8ab4f81f;
-}
-```
-
-Or get more advanced by styling our sidebar!
-
-![scalar-sidebar-variables](https://github.com/scalar/scalar/assets/6201407/2c363cbc-f06f-4ad3-b44f-05cee8c95a8b)
-
-```
-.light-mode .sidebar {
-  --sidebar-background-1: var(--theme-background-1);
-  --sidebar-item-hover-color: currentColor;
-  --sidebar-item-hover-background: var(--theme-background-2);
-  --sidebar-item-active-background: var(--theme-background-2);
-  --sidebar-border-color: var(--theme-border-color);
-  --sidebar-color-1: var(--theme-color-1);
-  --sidebar-color-2: var(--theme-color-2);
-  --sidebar-color-active: var(--theme-color-2);
-  --sidebar-search-background: var(--theme-background-2);
-  --sidebar-search-border-color: var(--theme-border-color);
-  --sidebar-search--color: var(--theme-color-3);
-}
-.dark-mode .sidebar {
-  --sidebar-background-1: var(--theme-background-1);
-  --sidebar-item-hover-color: currentColor;
-  --sidebar-item-hover-background: var(--theme-background-2);
-  --sidebar-item-active-background: var(--theme-background-2);
-  --sidebar-border-color: var(--theme-border-color);
-  --sidebar-color-1: var(--theme-color-1);
-  --sidebar-color-2: var(--theme-color-2);
-  --sidebar-color-active: var(--theme-color-2);
-  --sidebar-search-background: var(--theme-background-2);
-  --sidebar-search-border-color: var(--theme-border-color);
-  --sidebar-search--color: var(--theme-color-3);
-}
-```
-
-## Community
-
-We are API nerds. You too? Let’s chat on Discord: <https://discord.gg/8HeZcRGPFS>
-
-## Other packages
-
-This repository contains all our open source projects and there’s definitely more to discover.
-
-| Package                                                                                                    | Description                                           |
-| ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [@scalar/api-client-proxy](https://github.com/scalar/scalar/tree/main/packages/api-client-proxy)           | an API request proxy based on express                 |
-| [@scalar/api-client](https://github.com/scalar/scalar/tree/main/packages/api-client)                       | the open source API testing client                    |
-| [@scalar/api-reference](https://github.com/scalar/scalar/tree/main/packages/api-reference)                 | generate beautiful API references                     |
-| [@scalar/echo-server](https://github.com/scalar/scalar/tree/main/packages/echo-server)                     | an express server which replies with the request data |
-| [@scalar/fastify-api-reference](https://github.com/scalar/scalar/tree/main/packages/fastify-api-reference) | a fastify plugin to render API references             |
-| [@scalar/hono-api-reference](https://github.com/scalar/scalar/tree/main/packages/hono-api-reference)       | a Hono middleware to render API references            |
-| [@scalar/nestjs-api-reference](https://github.com/scalar/scalar/tree/main/packages/nestjs-api-reference)   | a NestJS middleware to render API references          |
-| [@scalar/swagger-editor](https://github.com/scalar/scalar/tree/main/packages/swagger-editor)               | an editor tailored to write OpenAPI spec              |
-| [@scalar/swagger-parser](https://github.com/scalar/scalar/tree/main/packages/swagger-parser)               | parse OpenAPI specs                                   |
-| [@scalar/use-clipboard](https://github.com/scalar/scalar/tree/main/packages/use-clipboard)                 | tiny Vue wrapper around the clipboard API             |
-| [@scalar/use-codemirror](https://github.com/scalar/scalar/tree/main/packages/use-codemirror)               | CodeMirror for Vue                                    |
-| [@scalar/use-keyboard-event](https://github.com/scalar/scalar/tree/main/packages/use-keyboard-event)       | keyboard shortcuts for Vue                            |
-| [@scalar/use-toasts](https://github.com/scalar/scalar/tree/main/packages/use-toasts)                       | display toasts in Vue                                 |
-| [@scalar/use-tooltip](https://github.com/scalar/scalar/tree/main/packages/use-tooltip)                     | tooltips in Vue                                       |
-
-## Contributors
+**Top Contributors (All Time)**
 
 <!-- readme: collaborators,contributors -start -->
 <table>
-<tr>
-    <td align="center">
-        <a href="https://github.com/hanspagel">
-            <img src="https://avatars.githubusercontent.com/u/1577992?v=4" width="100;" alt="hanspagel"/>
-            <br />
-            <sub><b>hanspagel</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/tmastrom">
-            <img src="https://avatars.githubusercontent.com/u/36525329?v=4" width="100;" alt="tmastrom"/>
-            <br />
-            <sub><b>tmastrom</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/marclave">
-            <img src="https://avatars.githubusercontent.com/u/6176314?v=4" width="100;" alt="marclave"/>
-            <br />
-            <sub><b>marclave</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/hwkr">
-            <img src="https://avatars.githubusercontent.com/u/6374090?v=4" width="100;" alt="hwkr"/>
-            <br />
-            <sub><b>hwkr</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/cameronrohani">
-            <img src="https://avatars.githubusercontent.com/u/6201407?v=4" width="100;" alt="cameronrohani"/>
-            <br />
-            <sub><b>cameronrohani</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/amritk">
-            <img src="https://avatars.githubusercontent.com/u/2039539?v=4" width="100;" alt="amritk"/>
-            <br />
-            <sub><b>amritk</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/geoffgscott">
-            <img src="https://avatars.githubusercontent.com/u/59206100?v=4" width="100;" alt="geoffgscott"/>
-            <br />
-            <sub><b>geoffgscott</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/ATREAY">
-            <img src="https://avatars.githubusercontent.com/u/66585295?v=4" width="100;" alt="ATREAY"/>
-            <br />
-            <sub><b>ATREAY</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Mohib834">
-            <img src="https://avatars.githubusercontent.com/u/47316464?v=4" width="100;" alt="Mohib834"/>
-            <br />
-            <sub><b>Mohib834</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/mouhannad-sh">
-            <img src="https://avatars.githubusercontent.com/u/18495740?v=4" width="100;" alt="mouhannad-sh"/>
-            <br />
-            <sub><b>mouhannad-sh</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/chrislearn">
-            <img src="https://avatars.githubusercontent.com/u/5874864?v=4" width="100;" alt="chrislearn"/>
-            <br />
-            <sub><b>chrislearn</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/danp">
-            <img src="https://avatars.githubusercontent.com/u/2182?v=4" width="100;" alt="danp"/>
-            <br />
-            <sub><b>danp</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/jonataw">
-            <img src="https://avatars.githubusercontent.com/u/29772763?v=4" width="100;" alt="jonataw"/>
-            <br />
-            <sub><b>jonataw</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/IHIutch">
-            <img src="https://avatars.githubusercontent.com/u/20825047?v=4" width="100;" alt="IHIutch"/>
-            <br />
-            <sub><b>IHIutch</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Mason-Little">
-            <img src="https://avatars.githubusercontent.com/u/105008441?v=4" width="100;" alt="Mason-Little"/>
-            <br />
-            <sub><b>Mason-Little</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/sinh117801">
-            <img src="https://avatars.githubusercontent.com/u/43696715?v=4" width="100;" alt="sinh117801"/>
-            <br />
-            <sub><b>sinh117801</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Chinlinlee">
-            <img src="https://avatars.githubusercontent.com/u/49154622?v=4" width="100;" alt="Chinlinlee"/>
-            <br />
-            <sub><b>Chinlinlee</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/FotieMConstant">
-            <img src="https://avatars.githubusercontent.com/u/42372656?v=4" width="100;" alt="FotieMConstant"/>
-            <br />
-            <sub><b>FotieMConstant</b></sub>
-        </a>
-    </td></tr>
+	<tbody>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/hanspagel">
+                    <img src="https://avatars.githubusercontent.com/u/1577992?v=4" width="100;" alt="hanspagel"/>
+                    <br />
+                    <sub><b>hanspagel</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/amritk">
+                    <img src="https://avatars.githubusercontent.com/u/2039539?v=4" width="100;" alt="amritk"/>
+                    <br />
+                    <sub><b>amritk</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/xC0dex">
+                    <img src="https://avatars.githubusercontent.com/u/22918366?v=4" width="100;" alt="xC0dex"/>
+                    <br />
+                    <sub><b>xC0dex</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/tmastrom">
+                    <img src="https://avatars.githubusercontent.com/u/36525329?v=4" width="100;" alt="tmastrom"/>
+                    <br />
+                    <sub><b>tmastrom</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/marclave">
+                    <img src="https://avatars.githubusercontent.com/u/6176314?v=4" width="100;" alt="marclave"/>
+                    <br />
+                    <sub><b>marclave</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/antlio">
+                    <img src="https://avatars.githubusercontent.com/u/14966155?v=4" width="100;" alt="antlio"/>
+                    <br />
+                    <sub><b>antlio</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/hwkr">
+                    <img src="https://avatars.githubusercontent.com/u/6374090?v=4" width="100;" alt="hwkr"/>
+                    <br />
+                    <sub><b>hwkr</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/cameronrohani">
+                    <img src="https://avatars.githubusercontent.com/u/6201407?v=4" width="100;" alt="cameronrohani"/>
+                    <br />
+                    <sub><b>cameronrohani</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/geoffgscott">
+                    <img src="https://avatars.githubusercontent.com/u/59206100?v=4" width="100;" alt="geoffgscott"/>
+                    <br />
+                    <sub><b>geoffgscott</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/inyourtime">
+                    <img src="https://avatars.githubusercontent.com/u/66111030?v=4" width="100;" alt="inyourtime"/>
+                    <br />
+                    <sub><b>inyourtime</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Amorim33">
+                    <img src="https://avatars.githubusercontent.com/u/42624869?v=4" width="100;" alt="Amorim33"/>
+                    <br />
+                    <sub><b>Amorim33</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Mason-Little">
+                    <img src="https://avatars.githubusercontent.com/u/105008441?v=4" width="100;" alt="Mason-Little"/>
+                    <br />
+                    <sub><b>Mason-Little</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/adjsky">
+                    <img src="https://avatars.githubusercontent.com/u/49305219?v=4" width="100;" alt="adjsky"/>
+                    <br />
+                    <sub><b>adjsky</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ATREAY">
+                    <img src="https://avatars.githubusercontent.com/u/66585295?v=4" width="100;" alt="ATREAY"/>
+                    <br />
+                    <sub><b>ATREAY</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Edgaraszs">
+                    <img src="https://avatars.githubusercontent.com/u/55696268?v=4" width="100;" alt="Edgaraszs"/>
+                    <br />
+                    <sub><b>Edgaraszs</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/fuma-nama">
+                    <img src="https://avatars.githubusercontent.com/u/76240755?v=4" width="100;" alt="fuma-nama"/>
+                    <br />
+                    <sub><b>fuma-nama</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/lc-soft">
+                    <img src="https://avatars.githubusercontent.com/u/1730073?v=4" width="100;" alt="lc-soft"/>
+                    <br />
+                    <sub><b>lc-soft</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Mohib834">
+                    <img src="https://avatars.githubusercontent.com/u/47316464?v=4" width="100;" alt="Mohib834"/>
+                    <br />
+                    <sub><b>Mohib834</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/RemcoGoy">
+                    <img src="https://avatars.githubusercontent.com/u/34539109?v=4" width="100;" alt="RemcoGoy"/>
+                    <br />
+                    <sub><b>RemcoGoy</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/mcollina">
+                    <img src="https://avatars.githubusercontent.com/u/52195?v=4" width="100;" alt="mcollina"/>
+                    <br />
+                    <sub><b>mcollina</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/mpminardi">
+                    <img src="https://avatars.githubusercontent.com/u/8587567?v=4" width="100;" alt="mpminardi"/>
+                    <br />
+                    <sub><b>mpminardi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/soulchild">
+                    <img src="https://avatars.githubusercontent.com/u/59642?v=4" width="100;" alt="soulchild"/>
+                    <br />
+                    <sub><b>soulchild</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/yshrsmz">
+                    <img src="https://avatars.githubusercontent.com/u/654889?v=4" width="100;" alt="yshrsmz"/>
+                    <br />
+                    <sub><b>yshrsmz</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/hex0id">
+                    <img src="https://avatars.githubusercontent.com/u/5276261?v=4" width="100;" alt="hex0id"/>
+                    <br />
+                    <sub><b>hex0id</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/x-delfino">
+                    <img src="https://avatars.githubusercontent.com/u/67192579?v=4" width="100;" alt="x-delfino"/>
+                    <br />
+                    <sub><b>x-delfino</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ykdojo">
+                    <img src="https://avatars.githubusercontent.com/u/1811651?v=4" width="100;" alt="ykdojo"/>
+                    <br />
+                    <sub><b>ykdojo</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/timheuer">
+                    <img src="https://avatars.githubusercontent.com/u/4821?v=4" width="100;" alt="timheuer"/>
+                    <br />
+                    <sub><b>timheuer</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/gsmcdonald">
+                    <img src="https://avatars.githubusercontent.com/u/36003378?v=4" width="100;" alt="gsmcdonald"/>
+                    <br />
+                    <sub><b>gsmcdonald</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/mouhannad-sh">
+                    <img src="https://avatars.githubusercontent.com/u/18495740?v=4" width="100;" alt="mouhannad-sh"/>
+                    <br />
+                    <sub><b>mouhannad-sh</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/federicobond">
+                    <img src="https://avatars.githubusercontent.com/u/138426?v=4" width="100;" alt="federicobond"/>
+                    <br />
+                    <sub><b>federicobond</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/mason-at-pieces">
+                    <img src="https://avatars.githubusercontent.com/u/123421085?v=4" width="100;" alt="mason-at-pieces"/>
+                    <br />
+                    <sub><b>mason-at-pieces</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/dotfortun">
+                    <img src="https://avatars.githubusercontent.com/u/11822957?v=4" width="100;" alt="dotfortun"/>
+                    <br />
+                    <sub><b>dotfortun</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/SebastianBienert">
+                    <img src="https://avatars.githubusercontent.com/u/17458785?v=4" width="100;" alt="SebastianBienert"/>
+                    <br />
+                    <sub><b>SebastianBienert</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/realsama">
+                    <img src="https://avatars.githubusercontent.com/u/46403284?v=4" width="100;" alt="realsama"/>
+                    <br />
+                    <sub><b>realsama</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/captainsafia">
+                    <img src="https://avatars.githubusercontent.com/u/1857993?v=4" width="100;" alt="captainsafia"/>
+                    <br />
+                    <sub><b>captainsafia</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/STP5940">
+                    <img src="https://avatars.githubusercontent.com/u/21144303?v=4" width="100;" alt="STP5940"/>
+                    <br />
+                    <sub><b>STP5940</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/rmp135">
+                    <img src="https://avatars.githubusercontent.com/u/3882803?v=4" width="100;" alt="rmp135"/>
+                    <br />
+                    <sub><b>rmp135</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/rpmccarter">
+                    <img src="https://avatars.githubusercontent.com/u/63772591?v=4" width="100;" alt="rpmccarter"/>
+                    <br />
+                    <sub><b>rpmccarter</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/hrynevychroman">
+                    <img src="https://avatars.githubusercontent.com/u/82209198?v=4" width="100;" alt="hrynevychroman"/>
+                    <br />
+                    <sub><b>hrynevychroman</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/rbange">
+                    <img src="https://avatars.githubusercontent.com/u/13252574?v=4" width="100;" alt="rbange"/>
+                    <br />
+                    <sub><b>rbange</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/rickihastings">
+                    <img src="https://avatars.githubusercontent.com/u/45660?v=4" width="100;" alt="rickihastings"/>
+                    <br />
+                    <sub><b>rickihastings</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/petercinibulk">
+                    <img src="https://avatars.githubusercontent.com/u/29611892?v=4" width="100;" alt="petercinibulk"/>
+                    <br />
+                    <sub><b>petercinibulk</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/MaxBreida">
+                    <img src="https://avatars.githubusercontent.com/u/18685579?v=4" width="100;" alt="MaxBreida"/>
+                    <br />
+                    <sub><b>MaxBreida</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/MarioGK">
+                    <img src="https://avatars.githubusercontent.com/u/8379079?v=4" width="100;" alt="MarioGK"/>
+                    <br />
+                    <sub><b>MarioGK</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/luc122c">
+                    <img src="https://avatars.githubusercontent.com/u/7257092?v=4" width="100;" alt="luc122c"/>
+                    <br />
+                    <sub><b>luc122c</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ShadiestGoat">
+                    <img src="https://avatars.githubusercontent.com/u/48590492?v=4" width="100;" alt="ShadiestGoat"/>
+                    <br />
+                    <sub><b>ShadiestGoat</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/sanscontext">
+                    <img src="https://avatars.githubusercontent.com/u/17016388?v=4" width="100;" alt="sanscontext"/>
+                    <br />
+                    <sub><b>sanscontext</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Huliiiiii">
+                    <img src="https://avatars.githubusercontent.com/u/134658521?v=4" width="100;" alt="Huliiiiii"/>
+                    <br />
+                    <sub><b>Huliiiiii</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/tsiwek-piwik">
+                    <img src="https://avatars.githubusercontent.com/u/117373332?v=4" width="100;" alt="tsiwek-piwik"/>
+                    <br />
+                    <sub><b>tsiwek-piwik</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/dunklesToast">
+                    <img src="https://avatars.githubusercontent.com/u/17279485?v=4" width="100;" alt="dunklesToast"/>
+                    <br />
+                    <sub><b>dunklesToast</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/kwaichanz">
+                    <img src="https://avatars.githubusercontent.com/u/36059761?v=4" width="100;" alt="kwaichanz"/>
+                    <br />
+                    <sub><b>kwaichanz</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ga1az">
+                    <img src="https://avatars.githubusercontent.com/u/75758899?v=4" width="100;" alt="ga1az"/>
+                    <br />
+                    <sub><b>ga1az</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/FotieMConstant">
+                    <img src="https://avatars.githubusercontent.com/u/42372656?v=4" width="100;" alt="FotieMConstant"/>
+                    <br />
+                    <sub><b>FotieMConstant</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/danwithabox">
+                    <img src="https://avatars.githubusercontent.com/u/144792741?v=4" width="100;" alt="danwithabox"/>
+                    <br />
+                    <sub><b>danwithabox</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/WilliamBonvini">
+                    <img src="https://avatars.githubusercontent.com/u/37834150?v=4" width="100;" alt="WilliamBonvini"/>
+                    <br />
+                    <sub><b>WilliamBonvini</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/bsdayo">
+                    <img src="https://avatars.githubusercontent.com/u/41754841?v=4" width="100;" alt="bsdayo"/>
+                    <br />
+                    <sub><b>bsdayo</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Chinlinlee">
+                    <img src="https://avatars.githubusercontent.com/u/49154622?v=4" width="100;" alt="Chinlinlee"/>
+                    <br />
+                    <sub><b>Chinlinlee</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ruizhii">
+                    <img src="https://avatars.githubusercontent.com/u/110380613?v=4" width="100;" alt="ruizhii"/>
+                    <br />
+                    <sub><b>ruizhii</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/wilcoschoneveld">
+                    <img src="https://avatars.githubusercontent.com/u/3064588?v=4" width="100;" alt="wilcoschoneveld"/>
+                    <br />
+                    <sub><b>wilcoschoneveld</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Mai0313">
+                    <img src="https://avatars.githubusercontent.com/u/21039366?v=4" width="100;" alt="Mai0313"/>
+                    <br />
+                    <sub><b>Mai0313</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/Courtcircuits">
+                    <img src="https://avatars.githubusercontent.com/u/90451752?v=4" width="100;" alt="Courtcircuits"/>
+                    <br />
+                    <sub><b>Courtcircuits</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/thibaultleouay">
+                    <img src="https://avatars.githubusercontent.com/u/13894054?v=4" width="100;" alt="thibaultleouay"/>
+                    <br />
+                    <sub><b>thibaultleouay</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/sinh117801">
+                    <img src="https://avatars.githubusercontent.com/u/43696715?v=4" width="100;" alt="sinh117801"/>
+                    <br />
+                    <sub><b>sinh117801</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/soGit">
+                    <img src="https://avatars.githubusercontent.com/u/10682798?v=4" width="100;" alt="soGit"/>
+                    <br />
+                    <sub><b>soGit</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/elliotnash">
+                    <img src="https://avatars.githubusercontent.com/u/53949099?v=4" width="100;" alt="elliotnash"/>
+                    <br />
+                    <sub><b>elliotnash</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/diegolopes">
+                    <img src="https://avatars.githubusercontent.com/u/27782408?v=4" width="100;" alt="diegolopes"/>
+                    <br />
+                    <sub><b>diegolopes</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/lundibundi">
+                    <img src="https://avatars.githubusercontent.com/u/9109612?v=4" width="100;" alt="lundibundi"/>
+                    <br />
+                    <sub><b>lundibundi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/darekaze">
+                    <img src="https://avatars.githubusercontent.com/u/32747549?v=4" width="100;" alt="darekaze"/>
+                    <br />
+                    <sub><b>darekaze</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/danp">
+                    <img src="https://avatars.githubusercontent.com/u/2182?v=4" width="100;" alt="danp"/>
+                    <br />
+                    <sub><b>danp</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/danjohnson95">
+                    <img src="https://avatars.githubusercontent.com/u/6871504?v=4" width="100;" alt="danjohnson95"/>
+                    <br />
+                    <sub><b>danjohnson95</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/chrislearn">
+                    <img src="https://avatars.githubusercontent.com/u/5874864?v=4" width="100;" alt="chrislearn"/>
+                    <br />
+                    <sub><b>chrislearn</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/chadwhitacre">
+                    <img src="https://avatars.githubusercontent.com/u/134455?v=4" width="100;" alt="chadwhitacre"/>
+                    <br />
+                    <sub><b>chadwhitacre</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/carstenlebek">
+                    <img src="https://avatars.githubusercontent.com/u/59960385?v=4" width="100;" alt="carstenlebek"/>
+                    <br />
+                    <sub><b>carstenlebek</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/brunogrcsada">
+                    <img src="https://avatars.githubusercontent.com/u/54673205?v=4" width="100;" alt="brunogrcsada"/>
+                    <br />
+                    <sub><b>brunogrcsada</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/bdpiprava">
+                    <img src="https://avatars.githubusercontent.com/u/7871209?v=4" width="100;" alt="bdpiprava"/>
+                    <br />
+                    <sub><b>bdpiprava</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/zsilbi">
+                    <img src="https://avatars.githubusercontent.com/u/3886658?v=4" width="100;" alt="zsilbi"/>
+                    <br />
+                    <sub><b>zsilbi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/arthurfiorette">
+                    <img src="https://avatars.githubusercontent.com/u/47537704?v=4" width="100;" alt="arthurfiorette"/>
+                    <br />
+                    <sub><b>arthurfiorette</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/arashsheyda">
+                    <img src="https://avatars.githubusercontent.com/u/38922203?v=4" width="100;" alt="arashsheyda"/>
+                    <br />
+                    <sub><b>arashsheyda</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/sigpwned">
+                    <img src="https://avatars.githubusercontent.com/u/1236302?v=4" width="100;" alt="sigpwned"/>
+                    <br />
+                    <sub><b>sigpwned</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/alewin">
+                    <img src="https://avatars.githubusercontent.com/u/980844?v=4" width="100;" alt="alewin"/>
+                    <br />
+                    <sub><b>alewin</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/slash686">
+                    <img src="https://avatars.githubusercontent.com/u/4161770?v=4" width="100;" alt="slash686"/>
+                    <br />
+                    <sub><b>slash686</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/abdulamite">
+                    <img src="https://avatars.githubusercontent.com/u/7246246?v=4" width="100;" alt="abdulamite"/>
+                    <br />
+                    <sub><b>abdulamite</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/kyllian">
+                    <img src="https://avatars.githubusercontent.com/u/5831233?v=4" width="100;" alt="kyllian"/>
+                    <br />
+                    <sub><b>kyllian</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/KiARC">
+                    <img src="https://avatars.githubusercontent.com/u/73847484?v=4" width="100;" alt="KiARC"/>
+                    <br />
+                    <sub><b>KiARC</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/IHIutch">
+                    <img src="https://avatars.githubusercontent.com/u/20825047?v=4" width="100;" alt="IHIutch"/>
+                    <br />
+                    <sub><b>IHIutch</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/jonataw">
+                    <img src="https://avatars.githubusercontent.com/u/29772763?v=4" width="100;" alt="jonataw"/>
+                    <br />
+                    <sub><b>jonataw</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Jefwillems">
+                    <img src="https://avatars.githubusercontent.com/u/10141933?v=4" width="100;" alt="Jefwillems"/>
+                    <br />
+                    <sub><b>Jefwillems</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/TheVaan">
+                    <img src="https://avatars.githubusercontent.com/u/1108485?v=4" width="100;" alt="TheVaan"/>
+                    <br />
+                    <sub><b>TheVaan</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/JacobCoffee">
+                    <img src="https://avatars.githubusercontent.com/u/45884264?v=4" width="100;" alt="JacobCoffee"/>
+                    <br />
+                    <sub><b>JacobCoffee</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/kevinand11">
+                    <img src="https://avatars.githubusercontent.com/u/48160414?v=4" width="100;" alt="kevinand11"/>
+                    <br />
+                    <sub><b>kevinand11</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/eltociear">
+                    <img src="https://avatars.githubusercontent.com/u/22633385?v=4" width="100;" alt="eltociear"/>
+                    <br />
+                    <sub><b>eltociear</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/IceyWu">
+                    <img src="https://avatars.githubusercontent.com/u/66096254?v=4" width="100;" alt="IceyWu"/>
+                    <br />
+                    <sub><b>IceyWu</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ivanagas">
+                    <img src="https://avatars.githubusercontent.com/u/34755028?v=4" width="100;" alt="ivanagas"/>
+                    <br />
+                    <sub><b>ivanagas</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/CJHwong">
+                    <img src="https://avatars.githubusercontent.com/u/906057?v=4" width="100;" alt="CJHwong"/>
+                    <br />
+                    <sub><b>CJHwong</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/HelgeSverre">
+                    <img src="https://avatars.githubusercontent.com/u/1089652?v=4" width="100;" alt="HelgeSverre"/>
+                    <br />
+                    <sub><b>HelgeSverre</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Hamidrzash">
+                    <img src="https://avatars.githubusercontent.com/u/69453538?v=4" width="100;" alt="Hamidrzash"/>
+                    <br />
+                    <sub><b>Hamidrzash</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/GreyXor">
+                    <img src="https://avatars.githubusercontent.com/u/79602273?v=4" width="100;" alt="GreyXor"/>
+                    <br />
+                    <sub><b>GreyXor</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Fdawgs">
+                    <img src="https://avatars.githubusercontent.com/u/43814140?v=4" width="100;" alt="Fdawgs"/>
+                    <br />
+                    <sub><b>Fdawgs</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/facus26">
+                    <img src="https://avatars.githubusercontent.com/u/18079059?v=4" width="100;" alt="facus26"/>
+                    <br />
+                    <sub><b>facus26</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/emmanuel-ferdman">
+                    <img src="https://avatars.githubusercontent.com/u/35470921?v=4" width="100;" alt="emmanuel-ferdman"/>
+                    <br />
+                    <sub><b>emmanuel-ferdman</b></sub>
+                </a>
+            </td>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: collaborators,contributors -end -->
-
-Contributions are welcome! Read [`CONTRIBUTING`](https://github.com/scalar/scalar/blob/main/CONTRIBUTING).
-
-## License
-
-The source code in this repository is licensed under [MIT](https://github.com/scalar/scalar/blob/main/LICENSE).

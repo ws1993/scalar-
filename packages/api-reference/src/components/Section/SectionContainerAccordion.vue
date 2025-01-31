@@ -48,7 +48,7 @@ import { ScalarIcon } from '@scalar/components'
 
   padding: 6px 0 6px 0;
   margin: -6px 0 -6px 0;
-  border-radius: var(--theme-radius, var(--default-theme-radius));
+  border-radius: var(--scalar-radius);
 }
 .section-accordion-chevron {
   width: 24px;
@@ -56,25 +56,33 @@ import { ScalarIcon } from '@scalar/components'
   left: -24px;
   height: auto;
   top: 10px;
-  color: var(--theme-color-3, var(--default-theme-color-3));
+  color: var(--scalar-color-3);
 }
 
 .section-accordion-button:hover .section-accordion-chevron {
-  color: var(--theme-color-1, var(--default-theme-color-1));
+  color: var(--scalar-color-1);
 }
 .section-accordion-title {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   flex: 1;
   padding: 0 6px;
 }
-.references-narrow .section-accordion-chevron {
-  width: 16px;
-  left: -16px;
-  top: 14px;
+.section-accordion-title :deep(.section-header-wrapper) {
+  grid-template-columns: 1fr;
 }
-.references-narrow .section-accordion-wrapper {
-  padding: calc(var(--refs-header-height)) 24px 0 24px;
+.section-accordion-title :deep(.section-header) {
+  margin-bottom: 0;
+}
+@container narrow-references-container (max-width: 900px) {
+  .section-accordion-chevron {
+    width: 16px;
+    left: -16px;
+    top: 14px;
+  }
+  .section-accordion-wrapper {
+    padding: calc(var(--refs-header-height)) 24px 0 24px;
+  }
 }
 </style>

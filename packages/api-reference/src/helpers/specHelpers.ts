@@ -1,4 +1,6 @@
-import type { ContentSchema, Operation } from '../types'
+import type { Operation } from '@scalar/types/legacy'
+
+import type { ContentSchema } from '../types'
 
 type PropertyObject = {
   required?: string[]
@@ -32,6 +34,10 @@ function recursiveLogger(obj: ContentSchema): string[] {
   const properties = obj?.schema?.properties
   if (properties) {
     Object.keys(properties).forEach((key) => {
+      if (!obj.schema) {
+        return
+      }
+
       results.push(formatProperty(key, obj.schema))
 
       const property = properties[key]
@@ -51,8 +57,11 @@ function extractRequestBody(operation: Operation): string[] | boolean {
   try {
     // Using optional chaining here as well
     const body =
-      operation?.information?.requestBody?.content['application/json']
-    if (!body) throw new Error('Body not found')
+      operation?.information?.requestBody?.content?.['application/json']
+    if (!body) {
+      throw new Error('Body not found')
+    }
+
     return recursiveLogger(body)
   } catch (error) {
     return false

@@ -12,10 +12,15 @@ const meta = {
   component: ScalarButton,
   tags: ['autodocs'],
   argTypes: {
+    class: { control: 'text' },
     size: { control: 'select', options: ['md'] },
     variant: {
       control: 'select',
       options: ['solid', 'outlined', 'ghost', 'danger'],
+    },
+    type: {
+      control: 'select',
+      options: ['button', 'submit', 'reset'],
     },
   },
   render: (args) => ({
@@ -33,6 +38,20 @@ type Story = StoryObj<typeof meta>
 export const Base: Story = {}
 
 export const FullWidth: Story = { args: { fullWidth: true } }
+
+export const Ghost: Story = { args: { variant: 'ghost' } }
+
+export const Danger: Story = {
+  args: { variant: 'danger' },
+
+  render: (args) => ({
+    components: { ScalarButton },
+    setup() {
+      return { args }
+    },
+    template: `<ScalarButton v-bind="args">Delete</ScalarButton>`,
+  }),
+}
 
 export const Disabled: Story = { args: { disabled: true } }
 

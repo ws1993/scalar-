@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ThemeStyles } from '@scalar/themes'
+import '@scalar/themes/style.css'
 
 import PageLink from '../components/PageLink.vue'
+
+const inDevelopment = import.meta.env.DEV
 </script>
 <template>
-  <ThemeStyles id="default" />
-  <div class="main dark-mode">
+  <div class="main">
     <div class="logo">
       <svg
         data-v-873746d2=""
@@ -19,56 +20,138 @@ import PageLink from '../components/PageLink.vue'
           fill-rule="evenodd"></path>
       </svg>
     </div>
-    <h1>Examples</h1>
+    <h1>@scalar/api-reference</h1>
     <div class="page-links">
       <PageLink to="standalone-api-reference">
-        <template #title>Full API Reference</template>
+        <template #title>Standalone API Reference</template>
         <template #description>
           Modern API documentation with pre-configured search and all the bells
           and whistles.
         </template>
       </PageLink>
+      <PageLink to="api-reference">
+        <template #title>Basic API Reference</template>
+        <template #description>
+          The customizable API documentation, pretty bare bones if you ask me.
+        </template>
+      </PageLink>
       <PageLink to="classic-api-reference">
-        <template #title>Classic API Reference</template>
+        <template #title>API Reference (Classic Layout)</template>
         <template #description>
           Classic API documentation with search. Looks like Swagger UI if it was
           born today.
         </template>
       </PageLink>
       <PageLink to="embedded-api-reference">
-        <template #title>Embedded API Reference</template>
+        <template #title>API Reference as an Embed</template>
         <template #description>
           API documentation within a pre-existing website.
         </template>
       </PageLink>
-      <PageLink to="editable-api-reference">
-        <template #title>Editable API Reference</template>
+      <PageLink to="path-routing-api-reference">
+        <template #title>API Reference with Path Routing</template>
         <template #description>
-          Interactive API documentation with real-time editing.
+          Standalone API Reference with path routing instead of hash routing
         </template>
       </PageLink>
     </div>
-    <h1>Packages</h1>
+    <h1>Examples</h1>
     <div class="page-links">
-      <PageLink to="api-reference">
-        <template #title>API Reference</template>
+      <PageLink href="http://localhost:5065">
+        <template #title>Client V2</template>
+        <template #description>@scalar/api-client</template>
+      </PageLink>
+      <PageLink href="http://localhost:5062/json">
+        <template #title>Nuxt</template>
+        <template #description>@scalar/nuxt</template>
+      </PageLink>
+      <PageLink href="http://localhost:5066/api/openapi">
+        <template #title>Next.js</template>
+        <template #description>@scalar/nuxtjs-openapi</template>
+      </PageLink>
+      <PageLink href="http://localhost:5063/yaml-url">
+        <template #title>Docusaurus</template>
+        <template #description>@scalar/docusaurus</template>
+      </PageLink>
+      <PageLink
+        :href="
+          inDevelopment
+            ? 'http://localhost:5058'
+            : 'https://scalar-example-next-js-p6gnzjpyuq-uc.a.run.app'
+        ">
+        <template #title>Next.js</template>
+        <template #description>@scalar/nextjs-api-reference</template>
+      </PageLink>
+      <PageLink
+        :href="
+          inDevelopment
+            ? 'http://localhost:5059'
+            : 'https://scalar-example-react-p6gnzjpyuq-uc.a.run.app'
+        ">
+        <template #title>React</template>
+        <template #description>@scalar/api-reference</template>
+      </PageLink>
+      <PageLink
+        :href="
+          inDevelopment
+            ? 'http://localhost:5053/reference'
+            : 'https://scalar-example-fastify-p6gnzjpyuq-uc.a.run.app/reference'
+        ">
+        <template #title>Fastify</template>
+        <template #description>@scalar/fastify-api-reference</template>
+      </PageLink>
+      <PageLink
+        :href="
+          inDevelopment
+            ? 'http://localhost:5054'
+            : 'https://scalar-example-hono-p6gnzjpyuq-uc.a.run.app'
+        ">
+        <template #title>Hono</template>
+        <template #description>@scalar/hono-api-reference</template>
+      </PageLink>
+      <PageLink
+        :href="
+          inDevelopment
+            ? 'http://localhost:5055'
+            : 'https://scalar-example-express-p6gnzjpyuq-uc.a.run.app'
+        ">
+        <template #title>Express</template>
+        <template #description>@scalar/express-api-reference</template>
+      </PageLink>
+      <PageLink
+        :href="
+          inDevelopment
+            ? 'http://localhost:5056'
+            : 'https://scalar-example-nest-js-p6gnzjpyuq-uc.a.run.app'
+        ">
+        <template #title>NestJS (Express)</template>
+        <template #description>@scalar/nestjs-api-reference</template>
+      </PageLink>
+      <PageLink
+        :href="
+          inDevelopment
+            ? 'http://localhost:5057'
+            : 'https://scalar-example-nest-js-fastify-p6gnzjpyuq-uc.a.run.app'
+        ">
+        <template #title>NestJS (Fastify)</template>
+        <template #description>@scalar/nestjs-api-reference</template>
+      </PageLink>
+    </div>
+    <h1>@scalar/components</h1>
+    <div class="page-links">
+      <PageLink href="http://localhost:5100">
+        <template #title>Components</template>
         <template #description>
-          The customizable interactive API documentation, pretty bare bones if
-          you ask me.
+          The design system we’re using throughout our packages.
         </template>
       </PageLink>
-      <PageLink to="api-client">
-        <template #title>API Client</template>
+    </div>
+    <h1>@scalar/draggable</h1>
+    <div class="page-links">
+      <PageLink href="http://localhost:5064">
+        <template #title>Draggable</template>
         <template #description>
-          Just the API client, and nothing else. Play with any API in your
-          browser.
-        </template>
-      </PageLink>
-      <PageLink to="swagger-editor">
-        <template #title>Swagger Editor</template>
-        <template #description>
-          Our OpenAPI/Swagger editor, and just that. Ready to be embedded in any
-          website.
+          Light vue wrapper around html5 drag and drop
         </template>
       </PageLink>
     </div>
@@ -78,8 +161,8 @@ import PageLink from '../components/PageLink.vue'
 <style scoped>
 .main {
   font-family: 'Inter', sans-serif;
-  background-color: var(--default-theme-background-1);
-  color: var(--default-theme-color-1);
+  background-color: var(--scalar-background-1);
+  color: var(--scalar-color-1);
   min-height: 100vh;
   padding: 2rem;
   box-sizing: border-box;

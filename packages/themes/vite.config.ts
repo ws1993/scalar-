@@ -1,35 +1,25 @@
+import { createViteBuildOptions } from '@scalar/build-tooling'
 import vue from '@vitejs/plugin-vue'
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
+import { readdirSync } from 'fs'
 import { defineConfig } from 'vitest/config'
 
+/**
+ * All the preset files in the `src/presets` directory.
+ */
+const presets = readdirSync('src/presets').map(
+  (fileName) => `src/presets/${fileName}`,
+)
+
 export default defineConfig({
-  plugins: [
-    vue(),
-    cssInjectedByJsPlugin(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'src/base.css',
-          dest: './',
-        },
-        {
-          src: 'src/scrollbar.css',
-          dest: './',
-        },
-        {
-          src: 'src/presets',
-          dest: './',
-        },
-      ],
-    }),
-  ],
+  plugins: [vue()],
   build: {
-    lib: {
-      entry: ['src/index.ts'],
-      name: '@scalar/themes',
-      formats: ['es'],
-    },
+    ...createViteBuildOptions({
+      entry: ['src/index.ts', 'src/tailwind.ts', 'src/style.css', ...presets],
+      options: { lib: { formats: ['es', 'cjs'] } },
+    }),
+    cssCodeSplit: true,
+    // We don’t want to minify the CSS. We need beautiful output for our theme editor.
+    cssMinify: false,
   },
   test: {
     coverage: {

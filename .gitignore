@@ -1,4 +1,21 @@
 node_modules/
 dist/
+.history/
 .env
+.next
 .turbo
+*.tgz
+tsconfig.tsbuildinfo
+
+# Testing data
+test-*.json
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Temporary Vite/Vitest config files
+*.config.ts.timestamp-*.mjs
+
+
+.DS_Store

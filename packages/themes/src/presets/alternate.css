@@ -1,123 +1,117 @@
-.light-mode {
-  color-scheme: light;
-  --default-theme-color-1: #24293c;
-  --default-theme-color-2: #4a5166;
-  --default-theme-color-3: #888c9a;
-  --default-theme-color-accent: #0099ff;
-  --default-theme-background-1: #fff;
-  --default-theme-background-2: #f6f6f6;
-  --default-theme-background-3: #e7e7e7;
-  --default-theme-background-accent: #5369d20f;
-  --default-theme-border-color: rgba(0, 0, 0, 0.1);
-  --default-theme-scrollbar-color: rgba(0, 0, 0, 0.18);
-  --default-theme-scrollbar-color-active: rgba(0, 0, 0, 0.36);
-  --default-theme-lifted-brightness: 1;
-  --default-theme-backdrop-brightness: 1;
-
-  --default-theme-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.11);
-  --default-theme-shadow-2: rgba(0, 0, 0, 0.08) 0px 13px 20px 0px,
-    rgba(0, 0, 0, 0.08) 0px 3px 8px 0px,
-    var(--default-theme-border-color) 0px 0 0 1px;
-
-  --default-theme-button-1: rgb(49 53 56);
-  --default-theme-button-1-color: #fff;
-  --default-theme-button-1-hover: rgb(28 31 33);
-
-  --default-theme-color-green: #069061;
-  --default-theme-color-red: #ef0006;
-  --default-theme-color-yellow: #edbe20;
-  --default-theme-color-blue: #0082d0;
-  --default-theme-color-orange: #fb892c;
-  --default-theme-color-purple: #5203d1;
+/* basic theme */
+:root {
+  --scalar-text-decoration: underline;
+  --scalar-text-decoration-hover: underline;
 }
+.light-mode,
+.light-mode .dark-mode {
+  --scalar-background-1: #f9f9f9;
+  --scalar-background-2: #f1f1f1;
+  --scalar-background-3: #e7e7e7;
+  --scalar-background-card: #fff;
 
+  --scalar-color-1: #2a2f45;
+  --scalar-color-2: #757575;
+  --scalar-color-3: #8e8e8e;
+
+  --scalar-color-accent: var(--scalar-color-1);
+  --scalar-background-accent: var(--scalar-background-3);
+
+  --scalar-border-color: rgba(0, 0, 0, 0.1);
+}
 .dark-mode {
-  color-scheme: dark;
-  --default-theme-color-1: rgba(255, 255, 255, 0.9);
-  --default-theme-color-2: rgba(255, 255, 255, 0.62);
-  --default-theme-color-3: rgba(255, 255, 255, 0.44);
-  --default-theme-color-disabled: rgba(255, 255, 255, 0.34);
-  --default-theme-color-ghost: rgba(255, 255, 255, 0.26);
-  --default-theme-color-accent: #8ab4f8;
-  --default-theme-background-1: #1a1a1a;
-  --default-theme-background-2: #252525;
-  --default-theme-background-3: #323232;
-  --default-theme-background-4: rgba(255, 255, 255, 0.06);
-  --default-theme-background-accent: #8ab4f81f;
+  --scalar-background-1: #131313;
+  --scalar-background-2: #1d1d1d;
+  --scalar-background-3: #272727;
+  --scalar-background-card: #1d1d1d;
 
-  --default-theme-border-color: rgba(255, 255, 255, 0.1);
-  --default-theme-scrollbar-color: rgba(255, 255, 255, 0.24);
-  --default-theme-scrollbar-color-active: rgba(255, 255, 255, 0.48);
-  --default-theme-lifted-brightness: 1.45;
-  --default-theme-backdrop-brightness: 0.5;
+  --scalar-color-1: rgba(255, 255, 255, 0.9);
+  --scalar-color-2: rgba(255, 255, 255, 0.62);
+  --scalar-color-3: rgba(255, 255, 255, 0.44);
 
-  --default-theme-shadow-1: 0 1px 3px 0 rgb(0, 0, 0, 0.1);
-  --default-theme-shadow-2: rgba(15, 15, 15, 0.2) 0px 3px 6px,
-    rgba(15, 15, 15, 0.4) 0px 9px 24px, 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --scalar-color-accent: var(--scalar-color-1);
+  --scalar-background-accent: var(--scalar-background-3);
 
-  --default-theme-button-1: #f6f6f6;
-  --default-theme-button-1-color: #000;
-  --default-theme-button-1-hover: #e7e7e7;
+  --scalar-border-color: #2a2b2a;
+}
+/* Document Sidebar */
+.light-mode .t-doc__sidebar,
+.dark-mode .t-doc__sidebar {
+  --scalar-sidebar-background-1: var(--scalar-background-1);
+  --scalar-sidebar-color-1: var(--scalar-color-1);
+  --scalar-sidebar-color-2: var(--scalar-color-2);
+  --scalar-sidebar-border-color: var(--scalar-border-color);
 
-  --default-theme-color-green: #00b648;
-  --default-theme-color-red: #dc1b19;
-  --default-theme-color-yellow: #ffc90d;
-  --default-theme-color-blue: #4eb3ec;
-  --default-theme-color-orange: #ff8d4d;
-  --default-theme-color-purple: #b191f9;
+  --scalar-sidebar-item-hover-background: var(--scalar-background-2);
+  --scalar-sidebar-item-hover-color: currentColor;
 
-  /* REST API Client */
-  --default-theme-code-languages-background-supersede: transparent;
+  --scalar-sidebar-item-active-background: var(--scalar-background-accent);
+  --scalar-sidebar-color-active: var(--scalar-color-accent);
+
+  --scalar-sidebar-search-background: transparent;
+  --scalar-sidebar-search-color: var(--scalar-color-3);
+  --scalar-sidebar-search-border-color: var(--scalar-border-color);
+
+  --scalar-sidebar-indent-border: var(--scalar-sidebar-border-color);
+  --scalar-sidebar-indent-border-hover: var(--scalar-sidebar-border-color);
+  --scalar-sidebar-indent-border-active: var(--scalar-sidebar-border-color);
+}
+/* advanced */
+.light-mode .dark-mode,
+.light-mode {
+  --scalar-color-green: #069061;
+  --scalar-color-red: #ef0006;
+  --scalar-color-yellow: #edbe20;
+  --scalar-color-blue: #0082d0;
+  --scalar-color-orange: #fb892c;
+  --scalar-color-purple: #5203d1;
+
+  --scalar-button-1: rgba(0, 0, 0, 1);
+  --scalar-button-1-hover: rgba(0, 0, 0, 0.8);
+  --scalar-button-1-color: rgba(255, 255, 255, 0.9);
+}
+.dark-mode {
+  --scalar-color-green: #00b648;
+  --scalar-color-red: #dd2f2c;
+  --scalar-color-yellow: #ffc90d;
+  --scalar-color-blue: #4eb3ec;
+  --scalar-color-orange: #ff8d4d;
+  --scalar-color-purple: #b191f9;
+
+  --scalar-button-1: rgba(255, 255, 255, 1);
+  --scalar-button-1-hover: rgba(255, 255, 255, 0.9);
+  --scalar-button-1-color: black;
 }
 
-/* Sidebar */
-.light-mode .t-doc__sidebar {
-  --default-sidebar-background-1: var(--default-theme-background-2);
-  --default-sidebar-item-hover-color: currentColor;
-  --default-sidebar-item-hover-background: var(--default-theme-background-3);
-  --default-sidebar-item-active-background: var(
-    --default-theme-background-accent
+.scalar-api-client__item,
+.scalar-card,
+.dark-mode .dark-mode.scalar-card {
+  --scalar-background-1: var(--scalar-background-card);
+  --scalar-background-2: var(--scalar-background-1);
+  --scalar-background-3: var(--scalar-background-1);
+}
+.dark-mode .dark-mode.scalar-card {
+  --scalar-background-3: var(--scalar-background-3);
+}
+.t-doc__sidebar {
+  --scalar-color-green: var(--scalar-color-1);
+  --scalar-color-red: var(--scalar-color-1);
+  --scalar-color-yellow: var(--scalar-color-1);
+  --scalar-color-blue: var(--scalar-color-1);
+  --scalar-color-orange: var(--scalar-color-1);
+  --scalar-color-purple: var(--scalar-color-1);
+}
+.light-mode *::selection {
+  background-color: color-mix(
+    in srgb,
+    var(--scalar-color-blue),
+    transparent 70%
   );
-  --default-sidebar-border-color: transparent;
-  --default-sidebar-color-1: var(--default-theme-color-1);
-  --default-sidebar-color-2: var(--default-theme-color-2);
-  --default-sidebar-color-active: var(--default-theme-color-accent);
-  --default-sidebar-search-background: var(--default-theme-background-3);
-  --default-sidebar-search-border-color: var(--default-theme-background-3);
-  --default-sidebar-search--color: var(--default-theme-color-3);
 }
-
-.dark-mode .sidebar {
-  --default-sidebar-background-1: var(--default-theme-background-2);
-  --default-sidebar-item-hover-color: currentColor;
-  --default-sidebar-item-hover-background: var(--default-theme-background-3);
-  --default-sidebar-item-active-background: var(
-    --default-theme-background-accent
+.dark-mode *::selection {
+  background-color: color-mix(
+    in srgb,
+    var(--scalar-color-blue),
+    transparent 50%
   );
-  --default-sidebar-border-color: var(--default-theme-background-2);
-  --default-sidebar-color-1: var(--default-theme-color-1);
-  --default-sidebar-color-2: var(--default-theme-color-2);
-  --default-sidebar-color-active: var(--default-theme-color-accent);
-  --default-sidebar-search-background: var(--default-theme-background-3);
-  --default-sidebar-search-border-color: var(--default-theme-background-3);
-  --default-sidebar-search--color: var(--default-theme-color-3);
-}
-
-/* Document header */
-.light-mode .t-doc__header {
-  --default-header-background-1: #000;
-  --default-header-border-color: #000;
-  --default-header-color-1: #fff;
-  --default-header-color-2: rgba(255, 255, 255, 0.66);
-  --default-header-background-toggle: var(--default-theme-color-3);
-  --default-header-call-to-action-color: var(--default-theme-color-accent);
-}
-
-.dark-mode .t-doc__header {
-  --default-header-background-1: var(--default-theme-background-3);
-  --default-header-border-color: var(--header-background-1);
-  --default-header-color-1: var(--default-theme-color-1);
-  --default-header-color-2: var(--default-theme-color-2);
-  --default-header-background-toggle: var(--default-theme-color-3);
-  --default-header-call-to-action-color: var(--default-theme-color-accent);
 }

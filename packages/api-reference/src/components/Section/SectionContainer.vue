@@ -7,13 +7,14 @@
   position: relative;
   padding: 0 60px;
   width: 100%;
+  border-top: var(--scalar-border-width) solid var(--scalar-border-color);
 }
-.section-container:not(:first-of-type) {
-  border-top: 1px solid
-    var(--theme-border-color, var(--default-theme-border-color));
+.section-container:has(.introduction-section) {
+  border-top: none;
 }
-
-.references-narrow .section-container {
-  padding: 0;
+@container narrow-references-container (max-width: 900px) {
+  .section-container {
+    padding: 0;
+  }
 }
 </style>

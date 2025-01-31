@@ -1,5 +1,974 @@
 # @scalar/fastify-api-reference
 
+## 1.25.113
+
+## 1.25.112
+
+### Patch Changes
+
+- Updated dependencies [be34e7d]
+  - @scalar/types@0.0.29
+
+## 1.25.111
+
+## 1.25.110
+
+## 1.25.109
+
+### Patch Changes
+
+- Updated dependencies [702c386]
+- Updated dependencies [f1f39b0]
+  - @scalar/types@0.0.28
+
+## 1.25.108
+
+## 1.25.107
+
+## 1.25.106
+
+### Patch Changes
+
+- Updated dependencies [b552db5]
+  - @scalar/types@0.0.27
+
+## 1.25.105
+
+## 1.25.104
+
+### Patch Changes
+
+- Updated dependencies [60cd6f1]
+- Updated dependencies [60cd6f1]
+  - @scalar/types@0.0.26
+
+## 1.25.103
+
+## 1.25.102
+
+### Patch Changes
+
+- @scalar/types@0.0.25
+
+## 1.25.101
+
+## 1.25.100
+
+### Patch Changes
+
+- 940ce0e: chore(fastify-api-reference): move example to package playground
+
+## 1.25.99
+
+## 1.25.98
+
+## 1.25.97
+
+## 1.25.96
+
+## 1.25.95
+
+## 1.25.94
+
+## 1.25.93
+
+## 1.25.92
+
+## 1.25.91
+
+## 1.25.90
+
+## 1.25.89
+
+## 1.25.88
+
+## 1.25.87
+
+## 1.25.86
+
+### Patch Changes
+
+- Updated dependencies [c263aaf]
+  - @scalar/types@0.0.25
+
+## 1.25.85
+
+## 1.25.84
+
+## 1.25.83
+
+## 1.25.82
+
+## 1.25.81
+
+### Patch Changes
+
+- Updated dependencies [fbef0c3]
+  - @scalar/types@0.0.24
+
+## 1.25.80
+
+## 1.25.79
+
+## 1.25.78
+
+## 1.25.77
+
+## 1.25.76
+
+## 1.25.75
+
+## 1.25.74
+
+## 1.25.73
+
+### Patch Changes
+
+- a8d2d3b: fix: explicit export map is missing the type export
+- Updated dependencies [c2f5f08]
+  - @scalar/types@0.0.23
+
+## 1.25.72
+
+### Patch Changes
+
+- Updated dependencies [baaad1c]
+- Updated dependencies [c984ac8]
+  - @scalar/types@0.0.22
+
+## 1.25.71
+
+## 1.25.70
+
+### Patch Changes
+
+- Updated dependencies [9d23f95]
+  - @scalar/types@0.0.21
+
+## 1.25.69
+
+## 1.25.68
+
+### Patch Changes
+
+- Updated dependencies [f67c3bc]
+  - @scalar/types@0.0.20
+
+## 1.25.67
+
+## 1.25.66
+
+## 1.25.65
+
+## 1.25.64
+
+## 1.25.63
+
+## 1.25.62
+
+## 1.25.61
+
+## 1.25.60
+
+### Patch Changes
+
+- @scalar/types@0.0.19
+
+## 1.25.59
+
+### Patch Changes
+
+- @scalar/types@0.0.19
+
+## 1.25.58
+
+## 1.25.57
+
+## 1.25.56
+
+## 1.25.55
+
+## 1.25.54
+
+## 1.25.53
+
+### Patch Changes
+
+- fb798c8: chore: make OpenAPI document URLs the default, deprecated `content`
+- Updated dependencies [fb798c8]
+  - @scalar/types@0.0.18
+
+## 1.25.52
+
+## 1.25.51
+
+## 1.25.50
+
+## 1.25.49
+
+## 1.25.48
+
+## 1.25.47
+
+### Patch Changes
+
+- e04d6e8: fix: JSON endpoint does not have CORS headers
+
+## 1.25.46
+
+## 1.25.45
+
+### Patch Changes
+
+- @scalar/types@0.0.17
+
+## 1.25.44
+
+## 1.25.43
+
+## 1.25.42
+
+## 1.25.41
+
+## 1.25.40
+
+## 1.25.39
+
+## 1.25.38
+
+### Patch Changes
+
+- dbbe38f: feat: add framework identifier for debugging purposes
+- Updated dependencies [dbbe38f]
+  - @scalar/types@0.0.16
+
+## 1.25.37
+
+### Patch Changes
+
+- 0c34a18: chore: updated vue package to 3.5
+  - @scalar/types@0.0.15
+
+## 1.25.36
+
+### Patch Changes
+
+- a9b71a5: feat: add cors headers to OpenAPI documents
+
+## 1.25.35
+
+## 1.25.34
+
+### Patch Changes
+
+- af5cd26: fix: doesn’t work with ignoreTrailingSlash: true
+
+## 1.25.33
+
+### Patch Changes
+
+- Updated dependencies [e911047]
+  - @scalar/types@0.0.14
+
+## 1.25.32
+
+## 1.25.31
+
+## 1.25.30
+
+## 1.25.29
+
+### Patch Changes
+
+- Updated dependencies [9dc2ab7]
+  - @scalar/types@0.0.13
+
+## 1.25.28
+
+## 1.25.27
+
+## 1.25.26
+
+### Patch Changes
+
+- Updated dependencies [8f12149]
+  - @scalar/types@0.0.12
+
+## 1.25.25
+
+## 1.25.24
+
+## 1.25.23
+
+## 1.25.22
+
+### Patch Changes
+
+- 90ef407: feat(fastify-api-reference): use relative URL for fetching spec from Fastify
+- Updated dependencies [f961940]
+  - @scalar/types@0.0.11
+
+## 1.25.21
+
+## 1.25.20
+
+### Patch Changes
+
+- b966dfe: fix: JS can't be fetched in proxied environments
+- b966dfe: chore!: mark `publicPath` as deprecated, remove it from the configuration
+
+## 1.25.19
+
+## 1.25.18
+
+### Patch Changes
+
+- @scalar/types@0.0.10
+
+## 1.25.17
+
+## 1.25.16
+
+## 1.25.15
+
+## 1.25.14
+
+## 1.25.13
+
+## 1.25.12
+
+### Patch Changes
+
+- @scalar/types@0.0.9
+
+## 1.25.11
+
+### Patch Changes
+
+- Updated dependencies [dc9aff2]
+  - @scalar/types@0.0.8
+
+## 1.25.10
+
+### Patch Changes
+
+- Updated dependencies [a07cfc8]
+- Updated dependencies [023ca15]
+- Updated dependencies [85872b6]
+  - @scalar/types@0.0.7
+
+## 1.25.9
+
+## 1.25.8
+
+### Patch Changes
+
+- @scalar/types@0.0.6
+
+## 1.25.7
+
+### Patch Changes
+
+- @scalar/types@0.0.5
+
+## 1.25.6
+
+## 1.25.5
+
+### Patch Changes
+
+- @scalar/types@0.0.4
+
+## 1.25.4
+
+### Patch Changes
+
+- @scalar/types@0.0.3
+
+## 1.25.3
+
+## 1.25.2
+
+### Patch Changes
+
+- Updated dependencies [910b1c2]
+  - @scalar/types@0.0.2
+
+## 1.25.1
+
+## 1.25.0
+
+### Patch Changes
+
+- 78db8f5: feat: use new @scalar/types package
+- Updated dependencies [78db8f5]
+  - @scalar/types@0.0.1
+
+## 1.24.77
+
+## 1.24.76
+
+## 1.24.75
+
+## 1.24.74
+
+### Patch Changes
+
+- a1be0e8: feat: add hooks option for API reference route
+
+## 1.24.73
+
+## 1.24.72
+
+## 1.24.71
+
+### Patch Changes
+
+- 159432b: chore!: change default routePrefix to /reference
+
+## 1.24.70
+
+## 1.24.69
+
+## 1.24.68
+
+## 1.24.67
+
+## 1.24.66
+
+## 1.24.65
+
+## 1.24.64
+
+## 1.24.63
+
+## 1.24.62
+
+## 1.24.61
+
+## 1.24.60
+
+## 1.24.59
+
+## 1.24.58
+
+## 1.24.57
+
+## 1.24.56
+
+## 1.24.55
+
+## 1.24.54
+
+## 1.24.53
+
+## 1.24.52
+
+## 1.24.51
+
+## 1.24.50
+
+## 1.24.49
+
+## 1.24.48
+
+## 1.24.47
+
+## 1.24.46
+
+## 1.24.45
+
+## 1.24.44
+
+## 1.24.43
+
+## 1.24.42
+
+## 1.24.41
+
+## 1.24.40
+
+## 1.24.39
+
+## 1.24.38
+
+## 1.24.37
+
+## 1.24.36
+
+## 1.24.35
+
+## 1.24.34
+
+## 1.24.33
+
+## 1.24.32
+
+## 1.24.31
+
+## 1.24.30
+
+## 1.24.29
+
+## 1.24.28
+
+## 1.24.27
+
+## 1.24.26
+
+## 1.24.25
+
+## 1.24.24
+
+## 1.24.23
+
+## 1.24.22
+
+## 1.24.21
+
+## 1.24.20
+
+### Patch Changes
+
+- 94e68ab: chore: upgrade typescript to 5.5
+
+## 1.24.19
+
+## 1.24.18
+
+## 1.24.17
+
+## 1.24.16
+
+## 1.24.15
+
+## 1.24.14
+
+## 1.24.13
+
+## 1.24.12
+
+## 1.24.11
+
+## 1.24.10
+
+## 1.24.9
+
+## 1.24.8
+
+## 1.24.7
+
+## 1.24.6
+
+## 1.24.5
+
+## 1.24.4
+
+## 1.24.3
+
+### Patch Changes
+
+- e0fc110: chore: patch bump all package
+
+## 1.24.0
+
+### Minor Changes
+
+- 7f8ef74: chore: remove aliasing
+
+### Patch Changes
+
+- 6fbb57e: feat: release all the packages
+
+## 1.23.5
+
+## 1.23.4
+
+### Patch Changes
+
+- db7864a: feat: self host fonts on scalar cdn
+
+## 1.23.3
+
+## 1.23.2
+
+## 1.23.1
+
+## 1.23.0
+
+## 1.22.56
+
+## 1.22.55
+
+## 1.22.54
+
+## 1.22.53
+
+## 1.22.52
+
+## 1.22.51
+
+## 1.22.50
+
+## 1.22.49
+
+## 1.22.48
+
+## 1.22.47
+
+## 1.22.46
+
+## 1.22.45
+
+## 1.22.44
+
+## 1.22.43
+
+## 1.22.42
+
+## 1.22.41
+
+## 1.22.40
+
+## 1.22.39
+
+## 1.22.38
+
+## 1.22.37
+
+## 1.22.36
+
+## 1.22.35
+
+## 1.22.34
+
+## 1.22.33
+
+## 1.22.32
+
+## 1.22.31
+
+## 1.22.30
+
+## 1.22.29
+
+## 1.22.28
+
+## 1.22.27
+
+## 1.22.26
+
+### Patch Changes
+
+- 670156e: chore: bump packages
+
+## 1.22.25
+
+## 1.22.24
+
+### Patch Changes
+
+- 45dc04b: fix: can’t release packages
+
+## 1.22.23
+
+### Patch Changes
+
+- 05e2e27: chore: add provenance statement
+
+## 1.22.22
+
+## 1.22.21
+
+### Patch Changes
+
+- 07211ad: chore: added new lint rule for type importing for better perf
+
+## 1.22.20
+
+### Patch Changes
+
+- 9201802: chore: update example page title
+
+## 1.22.3
+
+### Patch Changes
+
+- 85a0074: fix: hotfix integration fonts
+
+## 1.22.2
+
+### Patch Changes
+
+- d77acdd: fix: missing css font
+
+## 1.22.0
+
+### Minor Changes
+
+- 0e64a36: refactor: rename all --theme-_ variables to --scalar-_
+
+### Patch Changes
+
+- 22f2858: chore: ran syncpack to update packages
+
+## 1.21.0
+
+### Minor Changes
+
+- b58b83e: Improved fastify-api-reference plugin.
+
+## 1.20.27
+
+### Patch Changes
+
+- 605f522: feat: support tags with no operations
+
+## 1.20.26
+
+### Patch Changes
+
+- 050410a: feat: add config to hide download button
+
+## 1.20.25
+
+### Patch Changes
+
+- 1504d3b: feat: add config to hide models
+
+## 1.20.22
+
+### Patch Changes
+
+- 4089634: feat: support x-displayName tag extension
+
+## 1.20.20
+
+### Patch Changes
+
+- c14568f: feat: add custom security option
+
+## 1.20.19
+
+### Patch Changes
+
+- ed44d47: manual fastify release
+
+## 1.20.10
+
+### Patch Changes
+
+- bec8e52: fix: add models to tag groups
+
+## 1.20.9
+
+### Patch Changes
+
+- 5260d07: feat: description for any
+
+## 1.20.5
+
+### Patch Changes
+
+- 0c5e22c: fix: section flare if position fixed
+
+## 1.20.2
+
+### Patch Changes
+
+- b32f46c: chore: update @scalar/api-reference
+
+## 1.19.5
+
+### Patch Changes
+
+- 00abdc5: chore: remove body margin reset everywhere, it’s not needed anymore
+- e520363: feat: added oauth2 implicit login flow
+
+## 1.19.4
+
+### Patch Changes
+
+- c987a90: fix: add min height to classic layout
+
+## 1.19.3
+
+### Patch Changes
+
+- 21195b7: fix: add back sidebar item hover color
+- 68cda2b: feat: add x-tagGroups in sidebar
+
+## 1.19.2
+
+### Patch Changes
+
+- a292ccb: fix: mobile backgrounds for mars and blueplanet
+
+## 1.19.1
+
+### Patch Changes
+
+- 148966b: fix: move errors into warning from new parser
+
+## 1.19.0
+
+### Minor Changes
+
+- 7fb8273: Migrate to @scalar/openapi-parser
+
+## 1.18.7
+
+### Patch Changes
+
+- cecf074: Migrate to oas utils for basic spec operations
+
+## 1.18.5
+
+### Patch Changes
+
+- 5cf4afa: style: replace resize observer with css container queries
+
+## 1.18.2
+
+### Patch Changes
+
+- ef3a015: chore: update to typescript 5.4
+
+## 1.17.15
+
+### Patch Changes
+
+- 3b672cc: fix: revert css changes to components lib
+
+## 1.17.14
+
+### Patch Changes
+
+- fd0af3c: fix: mobile header button
+
+## 1.17.13
+
+### Patch Changes
+
+- 5bf377e: fix: visual regressions
+
+## 1.17.12
+
+### Patch Changes
+
+- 5bc2ebf: Add syntax highlighting back to codemirror
+
+## 1.17.6
+
+### Patch Changes
+
+- ca7cced: fix: \_\_dirname undefined (again)
+
+## 1.17.5
+
+### Patch Changes
+
+- d78e247: fix: ESM envs \_\_dirname is undefined
+
+## 1.17.3
+
+### Patch Changes
+
+- 1669b27: chore: update dependencies
+
+## 1.17.2
+
+### Patch Changes
+
+- c6b95ca: chore: upgrade from Vite 4 to Vite 5
+
+## 1.16.0
+
+### Minor Changes
+
+- e0faebb: feat: add show more button to request variables and path params
+
+### Patch Changes
+
+- 92a8b9f: chore: update dependencies
+
+## 1.15.5
+
+### Patch Changes
+
+- 04d0fe12: fix: rollback api client proxy and request changes
+
+## 1.14.8
+
+### Patch Changes
+
+- d7dbba87: fix: css reset on markdown details summary
+
+## 1.13.18
+
+### Patch Changes
+
+- b4f66f0b: fix: example spec not loading on mobile
+
+## 1.13.13
+
+### Patch Changes
+
+- 7e0ca478: fix: Restoring missing forward slash between URL and API routes
+
+## 1.13.10
+
+### Patch Changes
+
+- 81543f42: chore: add support for Node 18
+
+## 1.13.8
+
+### Patch Changes
+
+- 2d83bef4: chore: bump version to update api-client dependency
+
+## 1.13.6
+
+### Patch Changes
+
+- 2003819a: fix: actually update fastify-html
+
+## 1.13.5
+
+### Patch Changes
+
+- 5ca138ee: - Removed activeBreadCrumb from api-client as its available in the slot
+  - Centralized navigation logic
+  - use proper anchor navigation instead of scrollIntoView, it will also be saved to history
+  - scrolling down will open the next section
+- dda5162c: chore: update fastify-html
+
+## 1.13.2
+
+### Patch Changes
+
+- 6d777194: feat: release themes
+
+## 1.13.1
+
+### Patch Changes
+
+- 20790661: feat: add space themes
+
+## 1.13.0
+
+### Patch Changes
+
+- 7582e82a: fix: classic layout stylings
+
+## 1.12.9
+
+### Patch Changes
+
+- d5d55407: feat: expose dark mode light mode property in config
+- 7d502131: fix: add markdown rendering for body schema
+
 ## 1.12.8
 
 ### Patch Changes
